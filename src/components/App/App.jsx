@@ -9,6 +9,7 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path="/signin">
           <Login />
+        </Route>
+        <Route path="*">
+          <PageNotFound />
         </Route>
       </Switch>
 
