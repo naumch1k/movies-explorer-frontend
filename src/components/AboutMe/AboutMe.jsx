@@ -10,8 +10,9 @@ function AboutMe(){
       <div className="about-me__columns">
         <div className="about-me__column">
           <img
-            alt="Личное фото"
+            className=""
             src={AboutMeImage}
+            alt="Личное фото"
           />
         </div>
         <div className="about-me__column">
