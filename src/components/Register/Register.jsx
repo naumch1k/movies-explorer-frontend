@@ -8,31 +8,35 @@ function Navigation() {
       <fieldset className="form__items">
 
         <label class="form__label" for="name">Имя</label>
-        <input 
+        <input
           className="form__item form__item_el_name"
           id="name"
           type="text"
           name="name"
+          placeholder="Имя"
+          minLength="2" maxLength="30"
           required
         />
         <p className="form__error" id="name-error"></p>
 
         <label class="form__label" for="email">E-mail</label>
-        <input 
+        <input
           className="form__item form__item_el_email"
           id="email"
           type="email"
           name="email"
+          placeholder="E-mail"
           required
         />
         <p className="form__error" id="email-error"></p>
 
         <label class="form__label" for="password">Пароль</label>
-        <input 
+        <input
           className="form__item form__item_el_password"
           id="password"
           type="password"
           name="password"
+          placeholder="Пароль"
           required
         />
         <p className="form__error" id="password-error"></p>
