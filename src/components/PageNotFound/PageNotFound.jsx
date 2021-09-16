@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom'; 
 
-function PageNotFound () {
+function PageNotFound() {
   const history = useHistory();
 
   const handleGoBackBtnClick = () => {

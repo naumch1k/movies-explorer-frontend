@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import HeaderLogo from '../../images/header-logo.svg';
 
-function Header({ loggedIn }){
+function Header({ loggedIn }) {
   return(
     <header className="header">
       <Link

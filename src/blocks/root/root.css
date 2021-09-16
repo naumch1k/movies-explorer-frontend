@@ -1,0 +1,57 @@
+:root {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-bg-tertiary: #e8e8e8;
+  --color-bg-ghost: #f2f2f2;
+  --color-bg-promo-only: #5c5c5c;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #a0a0a0;
+  --color-text-promo-only: #ffffff;
+
+  --color-accent-primary: #2be080;
+  --color-accent-secondary: #ee3465;
+  
+  --color-link-hover: #3456F3;
+  --color-link-hover-promo-only: #000000;
+
+  --text-size-xxs: 12px;
+  --text-size-xs: 13px;
+  --text-size-s: 14px;
+  --text-size-m: 18px;
+  --text-size-l: 20px;
+  --text-size-xl: 30px;
+  --text-size-xxl: 50px;
+
+  --max-width: 1280px;
+  --max-content-width: calc(var(--max-width) - var(--side-margin) * 2);
+  --min-width: 320px;
+
+  --side-margin: 70px;
+
+  --letter-spacing-tight: -0.04em;
+}
+
+@media screen and (max-width: 1023px) {
+  :root {
+    --text-size-s: 12px;
+    --text-size-xl: 28px;
+    --text-size-xxl: 40px;
+
+    --side-margin: 50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --text-size-s: 11px;
+    --text-size-m: 14px;
+    --text-size-l: 18px;
+    --text-size-xl: 18px;
+    --text-size-xxl: 30px;
+
+    --side-margin: 10px;
+    --extra-side-margin-narrow-section: 8px;
+    --extra-side-margin-medium-section: 4px;
+  }
+}

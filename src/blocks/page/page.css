@@ -1,0 +1,20 @@
+.page {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page__header {
+  max-width: var(--max-width);
+  width: calc(100% - (var(--side-margin) * 2));
+  margin: 0 auto;
+  padding: 18px 0;
+}
+
+.page__content {
+  display: grid;
+}

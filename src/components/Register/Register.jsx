@@ -7,7 +7,7 @@ function Navigation() {
       <h2 className="form__heading">Добро пожаловать!</h2>
       <fieldset className="form__items">
 
-        <label class="form__label" for="name">Имя</label>
+        <label className="form__label" for="name">Имя</label>
         <input
           className="form__item form__item_el_name"
           id="name"
@@ -19,7 +19,7 @@ function Navigation() {
         />
         <p className="form__error" id="name-error"></p>
 
-        <label class="form__label" for="email">E-mail</label>
+        <label className="form__label" for="email">E-mail</label>
         <input
           className="form__item form__item_el_email"
           id="email"
@@ -30,7 +30,7 @@ function Navigation() {
         />
         <p className="form__error" id="email-error"></p>
 
-        <label class="form__label" for="password">Пароль</label>
+        <label className="form__label" for="password">Пароль</label>
         <input
           className="form__item form__item_el_password"
           id="password"

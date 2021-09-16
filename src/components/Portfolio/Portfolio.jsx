@@ -1,47 +1,45 @@
 import React from 'react';
+import './Portfolio.css';
 import { Link } from 'react-router-dom'; 
 
-function Portfolio(){
-    return(
-      <section className="portfolio">
-        <h2 className="portfolio__title">Портфолио</h2>
-        <ul className="">
-          <li className="">
-            <Link
-              className=""
-              to={{ pathname: 'https://naumch1k.github.io/how-to-learn/' }}
+function Portfolio() {
+  const PORTFOLIO_LINKS = [
+    {
+      title: 'Статичный сайт',
+      link: 'https://naumch1k.github.io/how-to-learn/',
+    },
+    {
+      title: 'Адаптивный сайт',
+      link: 'https://naumch1k.github.io/russian-travel/',
+    },
+    {
+      title: 'Одностраничное приложение',
+      link: 'https://naumch1k.students.nomoredomains.rocks/',
+    },
+  ];
+
+  return(
+    <div className="portfolio">
+      <h3 className="portfolio__title">Портфолио</h3>
+      <ul className="portfolio__links">
+        {PORTFOLIO_LINKS.map((item, index) => (
+          <li 
+            className="portfolio__links-item"
+            key={index}
+          >
+            <Link 
+              className="portfolio__link"
+              to={{ pathname: item.link }}
               target="_blank"
             >
-              <h3 className="">Статичный сайт</h3>
-              <span className="">&#8599;</span>
+              {item.title}
             </Link>
           </li>
-          <li className="">
-            <Link
-              className=""
-              to={{ pathname: 'https://naumch1k.github.io/russian-travel/' }}
-              target="_blank"
-            >
-              <h3 className="">Адаптивный сайт</h3>
-              <span className="">&#8599;</span>
-            </Link>
-          </li>
-          <li className="">
-            <Link
-              className=""
-              to={{
-                pathname: 'https://naumch1k.students.nomoredomains.rocks/',
-              }}
-              target="_blank"
-            >
-              <h3 className="">Одностраничное приложение</h3>
-              <span className="">&#8599;</span>
-            </Link>
-          </li>
-        </ul>
-    </section>
-    )
-  }
+        ))}
+      </ul>
+    </div>
+  )
+}
   
 export default Portfolio;
   

@@ -5,7 +5,7 @@ function Navigation({ loggedIn }) {
   return (
     <>
       {!loggedIn &&
-        (<ul class="header__nav-links">
+        (<ul className="header__nav-links">
           <li>
             <NavLink
               className="header__nav-link"
@@ -27,7 +27,7 @@ function Navigation({ loggedIn }) {
         </ul>)
       }
       {loggedIn &&
-        (<ul class="header__nav-links">
+        (<ul className="header__nav-links">
           <li>
             <NavLink
               className="header__nav-link"

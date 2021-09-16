@@ -7,7 +7,7 @@ function Login() {
       <h2 className="form__heading">Рады видеть!</h2>
       <fieldset className="form__items">
 
-        <label class="form__label" for="email">E-mail</label>
+        <label className="form__label" for="email">E-mail</label>
         <input
           className="form__item form__item_el_email"
           id="email"
@@ -18,7 +18,7 @@ function Login() {
         />
         <p className="form__error" id="email-error"></p>
 
-        <label class="form__label" for="password">Пароль</label>
+        <label className="form__label" for="password">Пароль</label>
         <input 
           className="form__item form__item_el_password"
           id="password"
