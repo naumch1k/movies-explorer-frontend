@@ -9,12 +9,25 @@
 }
 
 .page__header {
-  max-width: var(--max-width);
-  width: calc(100% - (var(--side-margin) * 2));
-  margin: 0 auto;
   padding: 18px 0;
 }
 
 .page__content {
   display: grid;
+}
+
+.page__footer {
+  padding: 78px 0 20px;
+}
+
+@media screen and (max-width: 1023px) {
+  .page__footer {
+    padding: 34px 0 20px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .page__footer {
+    padding: 50px 0 20px;
+  }
 }
