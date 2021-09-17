@@ -1,7 +1,7 @@
 .promo {
   padding: 75px 0;
   background: var(--color-bg-promo-only);
-  color: var(--color-text-promo-only);
+  color: var(--color-text-tertiary);
 }
 
 .promo__container {
@@ -36,7 +36,7 @@
   width: 0;
   min-width: 129px;
   padding: 10px 19px;
-  color: var(--color-text-promo-only);
+  color: var(--color-text-tertiary);
   font-size: var(--text-size-xxs);
   line-height: 1.25;
   font-weight: 500;
@@ -49,7 +49,6 @@
 
   display: inline-block;
   box-sizing: border-box;
-  
 }
 
 .promo__link:hover {

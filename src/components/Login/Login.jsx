@@ -1,41 +1,50 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import './Login.css';
+
+import LogoLink from '../LogoLink/LogoLink';
+import Form from '../Form/Form';
+
+const INPUTS_DATA = [
+  {
+    key: 1,
+    type: 'email',
+    id: 'login-email',
+    label: 'E-mail',
+    placeholder: 'E-mail',
+    name: 'email',
+    errorId: "login-email-error",
+    required: true,
+  },
+  {
+    key: 2,
+    type: 'password',
+    id: 'login-password',
+    label: 'Пароль',
+    placeholder: 'Пароль',
+    name: 'password',
+    errorId: "login-password-error",
+    minLength: 8,
+    required: true,
+  },
+]
 
 function Login() {
   return (
-    <form className="form" name="login-form">
-      <h2 className="form__heading">Рады видеть!</h2>
-      <fieldset className="form__items">
-
-        <label className="form__label" for="email">E-mail</label>
-        <input
-          className="form__item form__item_el_email"
-          id="email"
-          type="email"
-          name="email"
-          placeholder="E-mail"
-          required
-        />
-        <p className="form__error" id="email-error"></p>
-
-        <label className="form__label" for="password">Пароль</label>
-        <input 
-          className="form__item form__item_el_password"
-          id="password"
-          type="password"
-          name="password"
-          placeholder="Пароль"
-          required
-        />
-        <p className="form__error" id="password-error"></p>
-        
-      </fieldset>
-      <button className="form__submit-btn" type="submit">Войти</button>
-      <p className="form__text">
-        Ещё не зарегистрированы?
-        <Link className="form__link" to="/signup"> Регистрация</Link>
-      </p>
-    </form>
+    <main className="login__container">
+      <LogoLink 
+        logoLinkModifier="_place_form"
+      />
+      <Form
+        name="login-form"
+        heading="Рады видеть!"
+        inputsData={INPUTS_DATA}
+        buttonModifier="_place_login"
+        buttonText="Войти"
+        formText="Ещё не зарегистрированы?"
+        linkPath="/signup"
+        linkText=" Регистрация"
+      />
+    </main>
   )
 }
 

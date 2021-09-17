@@ -1,22 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import LogoLink from '../LogoLink/LogoLink';
 import Navigation from '../Navigation/Navigation';
-import HeaderLogo from '../../images/header-logo.svg';
 
 function Header({ loggedIn }) {
   return(
     <header className="header">
-      <Link
-        className=""
-        to={{ pathname: '/' }}
-      >
-        <img 
-          className=""
-          src={HeaderLogo}
-          alt="Логотип сервиса Movies Explorer"
-        />
-      </Link>
+      <LogoLink />
       <Navigation 
         loggedIn={loggedIn}
       />
