@@ -1,7 +1,11 @@
+import SearchForm from '../SearchForm/SearchForm';
+
 function SavedMovies() {
-    return (
-        <p>SavedMovies component</p>
-    )
+  return (
+    <main>
+      <SearchForm />
+    </main>
+  )
 }
 
 export default SavedMovies;

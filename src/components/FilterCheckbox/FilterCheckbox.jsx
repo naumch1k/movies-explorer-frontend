@@ -1,11 +1,18 @@
+import './FilterCheckbox.css'
+
 function FilterCheckbox() {
   return (
-    <label>Короткоментражки
-      <input
-        type="checkbox"
-      />
-      <span/>
-    </label>
+    <div className="filter-checkbox">
+      <label className="filter-checkbox__label">
+        Короткометражки
+        <input
+          className="filter-checkbox__input"
+          type="checkbox"
+        />
+        <span className="filter-checkbox__slider"/>
+      </label>
+    </div>
+
   )
 }
 
