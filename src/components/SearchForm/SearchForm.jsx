@@ -12,14 +12,14 @@ function SearchForm() {
             className="search-form__label-icon"
             fill="currentColor"
           />
+          <input
+            className="search-form__item"
+            id="search-form-movie"
+            type="text"
+            placeholder="Фильм"
+            required
+          />
         </label>
-        <input
-          className="search-form__item"
-          id="search-form-movie"
-          type="text"
-          placeholder="Фильм"
-          required
-        />
         <button
           className="search-form__submit-btn"
           type="submit"
