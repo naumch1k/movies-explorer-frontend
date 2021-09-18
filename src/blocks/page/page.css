@@ -22,6 +22,7 @@
 }
 
 .page__content {
+  flex-grow: 1;
   display: grid;
 }
 
