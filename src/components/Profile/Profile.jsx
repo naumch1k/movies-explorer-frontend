@@ -8,24 +8,24 @@ function Profile() {
     <form className="profile">
       <h2 className="profile__heading">Привет, {currentUser.name}!</h2>
       <fieldset>
-        <label className="profile__info" for="name">Имя</label>
+        <label className="profile__info" htmlFor="name">Имя</label>
         <input
           className="form__item form__item_el_name"
           id="name"
           type="text"
           name="name"
-          value={currentUser.name}
+          /* value={currentUser.name} */ /* commented to avoid warning of missing onChange handler */
           placeholder="Имя"
           minLength="2" maxLength="30"
           required
         />
-        <label className="profile__info" for="email">E-mail</label>
+        <label className="profile__info" htmlFor="email">E-mail</label>
         <input
           className="form__item form__item_el_email"
           id="email"
           type="email"
           name="email"
-          value={currentUser.email}
+          /* value={currentUser.email} */
           placeholder="E-mail"
           required
         />
