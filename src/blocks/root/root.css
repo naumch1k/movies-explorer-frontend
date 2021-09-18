@@ -24,8 +24,10 @@
   --text-size-xxl: 50px;
 
   --max-width: 1280px;
+  --max-content-width: calc(var(--max-width) - var(--side-margin-default) * 2);
   --min-width: 320px;
 
+  --side-margin-default: 70px;
   --side-margin-l: 70px;
   --side-margin-m: 70px;
   --side-margin-s: 70px;
