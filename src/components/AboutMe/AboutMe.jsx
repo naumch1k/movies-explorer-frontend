@@ -20,8 +20,8 @@ function AboutMe() {
   ];
 
   return(
-    <section className="about-me section">
-      <div className="section__container section__container_size_medium">
+    <section className="about-me main__section">
+      <div className="main__section-container main__section-container_size_s">
         <SectionTitle 
           title="Студент"
         />

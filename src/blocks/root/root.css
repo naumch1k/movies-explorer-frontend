@@ -24,10 +24,12 @@
   --text-size-xxl: 50px;
 
   --max-width: 1280px;
-  --max-content-width: calc(var(--max-width) - var(--side-margin) * 2);
   --min-width: 320px;
 
-  --side-margin: 70px;
+  --side-margin-l: 70px;
+  --side-margin-m: 70px;
+  --side-margin-s: 70px;
+  --side-margin-xs: 70px;
 
   --letter-spacing-tight: -0.04em;
 }
@@ -38,7 +40,10 @@
     --text-size-xl: 28px;
     --text-size-xxl: 40px;
 
-    --side-margin: 50px;
+    --side-margin-l: 30px;
+    --side-margin-m: 50px;
+    --side-margin-s: 50px;
+    --side-margin-xs: 30px;
   }
 }
 
@@ -50,8 +55,8 @@
     --text-size-xl: 18px;
     --text-size-xxl: 30px;
 
-    --side-margin: 10px;
-    --extra-side-margin-narrow-section: 8px;
-    --extra-side-margin-medium-section: 4px;
+    --side-margin-m: 18px;
+    --side-margin-s: 14px;
+    --side-margin-xs: 10px;
   }
 }

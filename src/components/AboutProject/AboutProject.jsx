@@ -4,8 +4,8 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 
 function AboutProject() {
   return(
-    <section className="project section" id="project">
-      <div className="section__container section__container_size_narrow">
+    <section className="project main__section" id="project">
+      <div className="main__section-container main__section-container_size_m">
         <SectionTitle 
           title="О проекте"
         />

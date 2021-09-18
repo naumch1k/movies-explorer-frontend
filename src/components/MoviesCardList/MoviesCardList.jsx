@@ -38,20 +38,22 @@ const cards  = [
 function MoviesCardList() {
     return (
       <section className="movies main__section">
-        <ul className="movies__list">
-          {cards.map((card) => (
-            <MoviesCard
-              card={card}
-            />
-          ))}
-        </ul>
-        <button
-          className="movies__btn"
-          type="button"
-          aria-label="Показать больше фильмов"
-        >
-          Ещё
-        </button>
+        <div className="main__section-container main__section-container_size_xs">
+          <ul className="movies__list">
+            {cards.map((card) => (
+              <MoviesCard
+                card={card}
+              />
+            ))}
+          </ul>
+          <button
+            className="movies__btn"
+            type="button"
+            aria-label="Показать больше фильмов"
+          >
+            Ещё
+          </button>
+        </div>
       </section>
     )
   }
