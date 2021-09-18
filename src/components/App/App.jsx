@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css'
 import { Route, Switch } from 'react-router-dom';
 
 import Header from '../Header/Header';
@@ -25,7 +24,7 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-        <div className="app">
+        <div className="page__container">
           <Header
             loggedIn={loggedIn}
           />

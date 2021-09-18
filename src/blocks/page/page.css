@@ -8,6 +8,15 @@
   text-rendering: optimizeLegibility;
 }
 
+.page__container {
+  min-width: var(--min-width);
+  min-height: 100vh;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .page__header {
   padding: 18px 0;
 }
