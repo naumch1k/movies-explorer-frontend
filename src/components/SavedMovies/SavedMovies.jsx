@@ -2,7 +2,7 @@ import SearchForm from '../SearchForm/SearchForm';
 
 function SavedMovies() {
   return (
-    <main>
+    <main className="main page__content">
       <SearchForm />
     </main>
   )

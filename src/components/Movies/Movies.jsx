@@ -3,7 +3,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 function Movies() {
   return (
-    <main>
+    <main className="main page__content">
       <SearchForm />
       <MoviesCardList />
     </main>

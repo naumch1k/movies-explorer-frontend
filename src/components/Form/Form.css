@@ -58,8 +58,8 @@
   line-height: 1.2;
   background-color: var(--color-accent-primary);
   color: var(--color-text-tertiary);
+
   cursor: pointer;
-  
   transition: opacity .3s ease;
 }
 

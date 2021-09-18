@@ -36,11 +36,11 @@
   color: var(--color-accent-primary);
   background: unset;
   border: unset;
-  cursor: pointer;
 
   position: relative;
   bottom: -184px;
-
+  
+  cursor: pointer;
   transition: color .3s ease;
 }
 

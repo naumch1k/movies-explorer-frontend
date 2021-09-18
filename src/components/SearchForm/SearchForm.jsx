@@ -5,8 +5,8 @@ import { ReactComponent as SearchIcon } from '../../images/search-icon.svg';
 
 function SearchForm() {
   return (
-    <form className="search-form">
-      <fieldset className="search-form__container">
+    <section className="search-form main__section">
+      <form className="search-form__container">
         <label className="search-form__label" htmlFor="search-form-movie">
           <SearchIcon
             className="search-form__label-icon"
@@ -31,8 +31,8 @@ function SearchForm() {
           />
         </button>
         <FilterCheckbox />
-      </fieldset>
-    </form>
+      </form>
+    </section>
   )
 }
   
