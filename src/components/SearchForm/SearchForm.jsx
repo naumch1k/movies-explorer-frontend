@@ -6,7 +6,7 @@ import { ReactComponent as SearchIcon } from '../../images/search-icon.svg';
 function SearchForm() {
   return (
     <section className="search-form main__section">
-      <div className="main__section-container main__section-container_size_xs">
+      <div className="search-form__container main__section-container main__section-container_size_xs">
         <form className="search-form__content">
           <label className="search-form__label" htmlFor="search-form-movie">
             <SearchIcon
