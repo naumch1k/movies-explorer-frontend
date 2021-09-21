@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
+
+import HeaderLayout from '../../layouts/HeaderLayout';
+import HeaderFooterLayout from '../../layouts/HeaderFooterLayout';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -25,21 +26,30 @@ function App() {
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
         <div className="page__container">
-          <Header
-            loggedIn={loggedIn}
-          />
           <Switch>
             <Route exact path="/">
-              <Main />
+              <HeaderFooterLayout
+                component={Main}
+                loggedIn={loggedIn}
+              />
             </Route>
             <Route path="/movies">
-              <Movies />
+              <HeaderFooterLayout
+                component={Movies}
+                loggedIn={loggedIn}
+              />
             </Route>
             <Route path="/saved-movies">
-              <SavedMovies />
+              <HeaderFooterLayout
+                component={SavedMovies}
+                loggedIn={loggedIn}
+              />
             </Route>
             <Route path="/profile">
-              <Profile />
+              <HeaderLayout
+                component={Profile}
+                loggedIn={loggedIn}
+              />
             </Route>
             <Route path="/signup">
               <Register />
@@ -51,7 +61,6 @@ function App() {
               <PageNotFound />
             </Route>
           </Switch>
-          <Footer />
         </div>
       </CurrentUserContext.Provider>
     </div>
