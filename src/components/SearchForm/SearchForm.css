@@ -42,6 +42,7 @@
   color: var(--color-text-primary);
   background: #fdfdfd;
   border: none;
+  outline: none;
 }
 
 .search-form__item::placeholder {

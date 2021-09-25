@@ -2,7 +2,7 @@ import React from 'react';
 import './Register.css';
 
 import LogoLink from '../LogoLink/LogoLink';
-import Form from '../Form/Form';
+import AuthForm from '../AuthForm/AuthForm';
 
 const INPUTS_DATA = [
   {
@@ -41,21 +41,21 @@ const INPUTS_DATA = [
 
 function Register() {
   return (
-    <main className="register__container">
+    <div className="register">
       <LogoLink
         logoLinkModifier="logo-link_place_form"
       />
-      <Form
+      <AuthForm
         name="signup-form"
         heading="Добро пожаловать!"
         inputsData={INPUTS_DATA}
-        submitButtonModifier="form__submit-btn_place_singup"
+        submitButtonModifier="auth-form__submit-btn_place_singup"
         buttonText="Зарегистрироваться"
         formText="Уже зарегистрированы?"
         linkPath="/signin"
         linkText=" Войти"
       />
-    </main>
+    </div>
   )
 }
 

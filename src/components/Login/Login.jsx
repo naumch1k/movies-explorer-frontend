@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.css';
 
 import LogoLink from '../LogoLink/LogoLink';
-import Form from '../Form/Form';
+import AuthForm from '../AuthForm/AuthForm';
 
 const INPUTS_DATA = [
   {
@@ -30,21 +30,21 @@ const INPUTS_DATA = [
 
 function Login() {
   return (
-    <main className="login__container">
+    <div className="login">
       <LogoLink 
         logoLinkModifier="logo-link_place_form"
       />
-      <Form
+      <AuthForm
         name="login-form"
         heading="Рады видеть!"
         inputsData={INPUTS_DATA}
-        submitButtonModifier="form__submit-btn_place_login"
+        submitButtonModifier="auth-form__submit-btn_place_login"
         buttonText="Войти"
         formText="Ещё не зарегистрированы?"
         linkPath="/signup"
         linkText=" Регистрация"
       />
-    </main>
+    </div>
   )
 }
 

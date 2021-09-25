@@ -32,7 +32,7 @@
   border-bottom: 2px solid var(--color-text-primary);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .mobile-navigation__list {
     gap: 25px;
   }
