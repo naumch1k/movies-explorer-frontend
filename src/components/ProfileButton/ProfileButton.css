@@ -1,0 +1,52 @@
+.profile-btn {
+  padding: 5px 11px;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 500;
+  text-decoration: none;
+
+  color: var(--color-text-primary);
+  background: none;
+  border: 2px solid rgba(170, 170, 170, 0.2);
+  border-radius: 50px;
+  
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  transition: color .3s ease, border .3s ease;
+}
+
+.profile-btn__icon {
+  color: var(--color-text-primary);
+
+  transition: color .3s ease;
+}
+
+.profile-btn:hover {
+  color: rgba(0, 0, 0, .6);
+  border: 2px solid rgba(170, 170, 170, .1);
+}
+
+.profile-btn:hover .profile-btn__icon {
+  color: rgba(0, 0, 0, .6);
+}
+
+/* landing page */
+
+.header_place_landing .profile-btn {
+  color: var(--color-text-tertiary);
+}
+
+.header_place_landing .profile-btn__icon {
+  color: var(--color-text-tertiary);
+}
+
+.header_place_landing .profile-btn:hover {
+  color: rgba(255, 255, 255, .6);
+  border: 2px solid rgba(170, 170, 170, .1);
+}
+
+.header_place_landing .profile-btn:hover .profile-btn__icon {
+  color: rgba(255, 255, 255, .6);
+}

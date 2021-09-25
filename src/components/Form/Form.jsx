@@ -2,7 +2,21 @@ import React from 'react';
 import './Form.css';
 import { Link } from 'react-router-dom';
 
-function Form({ name, heading, inputsData, buttonModifier, buttonText, formText, linkPath, linkText }) {
+function Form({ 
+  name,
+  heading,
+  inputsData,
+  submitButtonModifier,
+  buttonText,
+  formText,
+  linkPath,
+  linkText
+}) {
+
+  const submitButtonClassName = (
+    `form__submit-btn ${!submitButtonModifier ? '' : submitButtonModifier}`
+  );
+
   return (
     <form className="form" name={name}>
       <h2 className="form__heading">{heading}</h2>
@@ -24,7 +38,7 @@ function Form({ name, heading, inputsData, buttonModifier, buttonText, formText,
           </div>
         ))}
       </fieldset>
-      <button className={`form__submit-btn form__submit-btn${buttonModifier}`} type="submit">{buttonText}</button>
+      <button className={submitButtonClassName} type="submit">{buttonText}</button>
       <p className="form__text">
         {formText}
         <Link className="form__link" to={linkPath}>{linkText}</Link>

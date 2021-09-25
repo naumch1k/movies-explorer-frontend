@@ -32,13 +32,13 @@ function Login() {
   return (
     <main className="login__container">
       <LogoLink 
-        logoLinkModifier="_place_form"
+        logoLinkModifier="logo-link_place_form"
       />
       <Form
         name="login-form"
         heading="Рады видеть!"
         inputsData={INPUTS_DATA}
-        buttonModifier="_place_login"
+        submitButtonModifier="form__submit-btn_place_login"
         buttonText="Войти"
         formText="Ещё не зарегистрированы?"
         linkPath="/signup"

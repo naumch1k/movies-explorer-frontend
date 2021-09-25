@@ -1,63 +1,45 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import './Navigation.css';
+import { NavLink } from 'react-router-dom';
 
-function Navigation({ loggedIn }) {
+import ProfileButton from '../ProfileButton/ProfileButton';
+
+function Navigation() {
+  const NAVIGATION_LINKS = [
+		{
+			key: 1,
+			linkText: 'Фильмы',
+			linkPath: '/movies',
+			exact: false,
+		},
+    {
+			key: 2,
+			linkText: 'Сохранённые фильмы',
+			linkPath: '/saved-movies',
+			exact: false,
+		},
+	]
+
   return (
-    <>
-      {!loggedIn &&
-        (<ul className="header__nav-links">
-          <li>
+    <nav className="navigation">
+      <ul className="navigation__items">
+        {NAVIGATION_LINKS.map((item) => (
+          <li className="navigation__list-item" key={item.key}>
             <NavLink
-              className="header__nav-link"
-              activeClassName="header__nav-link_active"
-              to={{ pathname: '/signup' }}
+              className="navigation__link"
+              activeClassName="navigation__link_active"
+              to={{ pathname: item.linkPath }}
+              exact={item.exact}
             >
-              Регистрация
+              {item.linkText}
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className="header__nav-link"
-              activeClassName="header__nav-link_active"
-              to={{ pathname: '/signin' }}
-            >
-              Войти
-            </NavLink>
-          </li>
-        </ul>)
-      }
-      {loggedIn &&
-        (<ul className="header__nav-links">
-          <li>
-            <NavLink
-              className="header__nav-link"
-              activeClassName="header__nav-link_active"
-              to={{ pathname: '/movies' }}
-            >
-              Фильмы
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="header__nav-link"
-              activeClassName="header__nav-link_active"
-              to={{ pathname: '/saved-movies' }}
-            >
-              Сохранённые фильмы
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="header__nav-link"
-              activeClassName="header__nav-link_active"
-              to={{ pathname: '/profile' }}
-            >
-              Аккаунт
-            </NavLink>
-          </li>
-        </ul>)
-      }
-    </>
+        ))}
+        <li>
+          <ProfileButton />
+        </li>
+      </ul>
+    </nav>
   )
 }
 

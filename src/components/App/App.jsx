@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Main from '../Main/Main';
@@ -8,6 +8,7 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import SideMenu from '../SideMenu/SideMenu';
 
 import HeaderLayout from '../../layouts/HeaderLayout';
 import HeaderFooterLayout from '../../layouts/HeaderFooterLayout';
@@ -20,7 +21,30 @@ function App() {
     email: 'email@email.com'
   });
 
+  const [isSideMenuPopupOpen, setSideMenuPopupOpen] = useState(false);
+
   const [loggedIn, setLoggedIn] = useState(false);
+
+  function handleSideMenuPopupOpen () {
+    setSideMenuPopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    setSideMenuPopupOpen(false);
+  }
+
+  const closeByEsc = useCallback(e => {
+    if (e.key === 'Escape') {
+      closeAllPopups();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isSideMenuPopupOpen) {
+      document.addEventListener('keydown', closeByEsc)
+    }
+    return () => document.removeEventListener('keydown', closeByEsc)
+  }, [closeByEsc, isSideMenuPopupOpen]);
 
   return (
     <div className="page">
@@ -31,24 +55,29 @@ function App() {
               <HeaderFooterLayout
                 component={Main}
                 loggedIn={loggedIn}
+                headerModifier="header_place_landing"
+                onOpenMenu={handleSideMenuPopupOpen}
               />
             </Route>
             <Route path="/movies">
               <HeaderFooterLayout
                 component={Movies}
                 loggedIn={loggedIn}
+                onOpenMenu={handleSideMenuPopupOpen}
               />
             </Route>
             <Route path="/saved-movies">
               <HeaderFooterLayout
                 component={SavedMovies}
                 loggedIn={loggedIn}
+                onOpenMenu={handleSideMenuPopupOpen}
               />
             </Route>
             <Route path="/profile">
               <HeaderLayout
                 component={Profile}
                 loggedIn={loggedIn}
+                onOpenMenu={handleSideMenuPopupOpen}
               />
             </Route>
             <Route path="/signup">
@@ -61,6 +90,11 @@ function App() {
               <PageNotFound />
             </Route>
           </Switch>
+          <SideMenu
+            isOpen={isSideMenuPopupOpen}
+            onClose={closeAllPopups}
+            onMobileLink={closeAllPopups}
+          />
         </div>
       </CurrentUserContext.Provider>
     </div>

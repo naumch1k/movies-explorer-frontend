@@ -43,13 +43,13 @@ function Register() {
   return (
     <main className="register__container">
       <LogoLink
-        logoLinkModifier="_place_form"
+        logoLinkModifier="logo-link_place_form"
       />
       <Form
         name="signup-form"
         heading="Добро пожаловать!"
         inputsData={INPUTS_DATA}
-        buttonModifier="_place_singup"
+        submitButtonModifier="form__submit-btn_place_singup"
         buttonText="Зарегистрироваться"
         formText="Уже зарегистрированы?"
         linkPath="/signin"

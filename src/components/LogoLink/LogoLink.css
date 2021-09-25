@@ -1,5 +1,8 @@
 .logo-link {
   transition: opacity .3s ease;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .logo-link:hover {
