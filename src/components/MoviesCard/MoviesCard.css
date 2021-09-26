@@ -66,9 +66,10 @@
 
 .movies-card__btn_use_delete {
   width: 21px;
-  padding: 0 0 8px;
-  font-size: 21px;
-  line-height: 13px;
+  background-image: url('../../images/cross-icon.svg');
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: 50%;
 }
 
 .movies-card:hover .movies-card__btn {

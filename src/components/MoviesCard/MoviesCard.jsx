@@ -35,9 +35,7 @@ function MoviesCard({ card }) {
           className="movies-card__btn movies-card__btn_use_delete"
           type="button"
           aria-label="Удалить из сохраненных"
-        >
-          &#10799;
-        </button>
+        />
       }
       {location.pathname === '/movies' &&       
         <button
