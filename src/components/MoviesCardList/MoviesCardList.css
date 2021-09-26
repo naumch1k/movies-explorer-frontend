@@ -14,25 +14,31 @@
 }
 
 .movies__btn {
-  min-width: 320px;
+  width: 320px;
   height: 36px;
   margin: 50px auto 0;
   padding: 6px 10px;
   font-size: 12px;
   line-height: 1.25;
   font-weight: 500;
-  background: #f9f9f9;
+  color: var(--color-text-primary);
+  background-color: rgba(249, 249, 249, 1);;
   border: none;
   border-radius: 6px;
 
   display: block;
 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
   cursor: pointer;  
-  transition: opacity .3s ease;
+  transition: color .3s, background-color .3s ease;
 }
 
 .movies__btn:hover {
-  opacity: .8;
+  color: rgba(0, 0, 0, .6);
+  background-color: rgba(249, 249, 249, .8);
 }
 
 @media screen and (max-width: 1023px) {
@@ -53,6 +59,6 @@
   }
 
   .movies__btn {
-    min-width: 240px;
+    width: 240px;
   }
 }
