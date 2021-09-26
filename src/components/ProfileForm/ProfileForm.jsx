@@ -44,6 +44,7 @@ function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdit
             type="button"
             className="profile-form__btn profile-form__btn_use_edit"
             onClick={onEditProfile}
+            aria-label="Редактировать профиль"
           >
             Редактировать
           </button>

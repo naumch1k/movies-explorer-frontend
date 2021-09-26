@@ -22,10 +22,10 @@ function App() {
     email: 'pochta@yandex.ru'
   });
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const [isSideMenuPopupOpen, setSideMenuPopupOpen] = useState(false);
-  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(true);
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
   function handleSideMenuPopupOpen () {
     setSideMenuPopupOpen(true);
