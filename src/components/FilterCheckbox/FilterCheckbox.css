@@ -20,6 +20,10 @@
   width: 0;
 }
 
+.filter-checkbox__input:focus + .filter-checkbox__slider {
+  outline: auto;
+}
+
 .filter-checkbox__input:checked + .filter-checkbox__slider {
   background-color: #ebebeb;
 }

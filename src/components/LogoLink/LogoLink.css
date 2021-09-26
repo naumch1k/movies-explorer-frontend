@@ -11,7 +11,7 @@
 
 .logo-link_place_form {
   margin: 0 0 38px;
-  display: block;
+  display: inline-block;
 }
 
 .logo-link__image_place_form {

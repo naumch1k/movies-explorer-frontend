@@ -79,6 +79,9 @@
   color: rgba(0, 0, 0, .8);
   background-color: rgba(249, 249, 249, .8);
 }
+.movies-card__btn:focus {
+  opacity: 1;
+}
 
 .movies-card__btn_active {
   padding: 0 6px;
