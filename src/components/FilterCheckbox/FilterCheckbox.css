@@ -20,7 +20,7 @@
   width: 0;
 }
 
-.filter-checkbox__input:focus + .filter-checkbox__slider {
+.filter-checkbox__input:focus-visible + .filter-checkbox__slider {
   outline: auto;
 }
 
