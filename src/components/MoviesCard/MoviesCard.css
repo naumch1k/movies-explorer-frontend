@@ -118,5 +118,6 @@
   .movies-card__btn {
     top: 10px;
     right: 10px;
+    opacity: 1;
   }
 }
