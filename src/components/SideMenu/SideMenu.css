@@ -38,21 +38,10 @@
   right: 0;
 }
 
-.side-menu__close-btn {
-  top: 29px;
-  right: 29px;
-}
-
-
 @media screen and (max-width: 767px) {
   .side-menu__container {
     width: 100%;
     padding: 145px 10px 46px;
-  }
-
-  .side-menu__close-btn {
-    top: 19px;
-    right: 19px;
   }
 }
 

@@ -9,7 +9,7 @@ function SideMenu({ isOpen, onClose, onMobileLink }) {
     <div className={`side-menu ${isOpen && 'side-menu_opened'}`}>
       <div className={`side-menu__container ${isOpen && 'side-menu__container_opened'}`}>
         <CloseButton 
-          className="side-menu__close-btn"
+          classNameModifier="close-btn_place_side-menu"
           onClose={onClose}
         />
         <MobileNavigation onMobileLink={onMobileLink} />

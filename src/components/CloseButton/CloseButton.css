@@ -18,3 +18,20 @@
 .close-btn:focus {
   opacity: .5;
 }
+
+.close-btn_place_side-menu {
+  top: 29px;
+  right: 29px;
+}
+
+.close-btn_place_info-tooltip {
+  top: 19px;
+  right: 19px;
+}
+
+@media screen and (max-width: 767px) {
+  .close-btn_place_side-menu {
+    top: 19px;
+    right: 19px;
+  }
+}
