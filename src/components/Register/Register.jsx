@@ -35,6 +35,7 @@ const INPUTS_DATA = [
     placeholder: 'Пароль',
     name: 'password',
     errorId: "signin-password-error",
+    minLength: 8,
     required: true,
   },
 ]
@@ -49,7 +50,7 @@ function Register() {
         name="signup-form"
         heading="Добро пожаловать!"
         inputsData={INPUTS_DATA}
-        submitButtonModifier="auth-form__submit-btn_place_singup"
+        submitButtonModifier="submit-btn_place_singup"
         buttonText="Зарегистрироваться"
         formText="Уже зарегистрированы?"
         linkPath="/signin"

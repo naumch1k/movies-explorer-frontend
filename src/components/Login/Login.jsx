@@ -38,7 +38,7 @@ function Login() {
         name="login-form"
         heading="Рады видеть!"
         inputsData={INPUTS_DATA}
-        submitButtonModifier="auth-form__submit-btn_place_login"
+        submitButtonModifier="submit-btn_place_login"
         buttonText="Войти"
         formText="Ещё не зарегистрированы?"
         linkPath="/signup"

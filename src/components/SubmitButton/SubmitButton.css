@@ -1,0 +1,61 @@
+.submit-btn {
+  width: 100%;
+  height: 45px;
+  margin-bottom: 17px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 500;
+  background-color: var(--color-accent-primary);
+  color: var(--color-text-tertiary);
+
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+
+.submit-btn:disabled {
+  color: #c2c2c2;
+  background-color: #f8f8f8;
+
+  cursor: not-allowed;
+}
+
+.submit-btn:hover:enabled {
+  opacity: .8;
+}
+
+.submit-btn_place_singup {
+  margin-top: 71px;
+}
+
+.submit-btn_place_login {
+  margin-top: 159px;
+}
+
+@media screen and (max-width: 767px) {
+  .submit-btn {
+    margin-bottom: 15px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .submit-btn_place_singup {
+    margin-top: 159px;
+  }
+  
+   .submit-btn_place_login {
+    margin-top: 247px;
+  }
+}
+
+@media screen and (max-height: 667px) {
+  .submit-btn_place_singup {
+    margin-top: 40px;
+  }
+  
+   .submit-btn_place_login {
+    margin-top: 40px;
+  }
+}

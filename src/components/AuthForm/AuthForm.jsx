@@ -2,6 +2,8 @@ import React from 'react';
 import './AuthForm.css';
 import { Link } from 'react-router-dom';
 
+import SubmitButton from '../SubmitButton/SubmitButton';
+
 function AuthForm({ 
   name,
   heading,
@@ -12,10 +14,6 @@ function AuthForm({
   linkPath,
   linkText
 }) {
-
-  const submitButtonClassName = (
-    `auth-form__submit-btn ${!submitButtonModifier ? '' : submitButtonModifier}`
-  );
 
   return (
     <form className="auth-form" name={name}>
@@ -38,7 +36,11 @@ function AuthForm({
           </div>
         ))}
       </fieldset>
-      <button className={submitButtonClassName} type="submit">{buttonText}</button>
+      <SubmitButton
+        classNameModifier={submitButtonModifier}
+        textContent={buttonText}
+        disabled={true}
+      />
       <p className="auth-form__text">
         {formText}
         <Link className="auth-form__link" to={linkPath}>{linkText}</Link>

@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import './ProfileForm.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function ProfileForm({ inputsData }) {
+import SubmitButton from "../SubmitButton/SubmitButton";
+
+function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdited, onEditProfile }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -28,20 +30,35 @@ function ProfileForm({ inputsData }) {
           </div>
         ))}
       </fieldset>
-      <div className="profile-form__btns">
-        <button
-          type="submit"
-          className="profile-form__btn profile-form__btn_use_submit"
-        >
-          Редактировать
-        </button>
-        <button
-          type="button"
-          className="profile-form__btn profile-form__btn_use_signout"
-        >
-          Выйти из аккаунта
-        </button>
-      </div>
+      {isBeingEdited ? (
+        <div className="profile-form__btns">
+          <SubmitButton 
+            classNameModifier={submitButtonModifier}
+            textContent={buttonText}
+            disabled={true}
+          />
+        </div>
+      ) : (
+        <div className="profile-form__btns">
+          <button
+            type="button"
+            className="profile-form__btn profile-form__btn_use_edit"
+            onClick={onEditProfile}
+          >
+            Редактировать
+          </button>
+          <button
+            type="button"
+            className="profile-form__btn profile-form__btn_use_signout"
+          >
+            Выйти из аккаунта
+          </button>
+        </div>
+      )
+      }
+
+
+
     </form>
   )
 }
