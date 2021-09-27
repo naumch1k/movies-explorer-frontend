@@ -1,0 +1,10 @@
+.register {
+  margin: auto;
+}
+
+@media screen and (max-height: 667px) {
+  .register {
+    padding: 30px 0;
+    box-sizing: border-box;
+  }
+}

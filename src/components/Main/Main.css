@@ -1,0 +1,32 @@
+.main {
+  display: grid;
+}
+
+.main__section {
+  width: 100%;
+}
+
+.main__section-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+.main__section-container_size_xl {
+  width: 100%;
+}
+
+.main__section-container_size_l {
+  width: calc(100% - (var(--side-margin-l) * 2));
+}
+
+.main__section-container_size_m {
+  width: calc(100% - (var(--side-margin-m) * 2));
+}
+
+.main__section-container_size_s {
+  width: calc(100% - (var(--side-margin-s) * 2));
+}
+
+.main__section-container_size_xs {
+  width: calc(100% - (var(--side-margin-xs) * 2));
+}

@@ -1,0 +1,67 @@
+:root {
+  /* main project colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-bg-tertiary: #e8e8e8;
+  --color-bg-ghost: #f2f2f2;
+  --color-bg-promo-only: #5c5c5c;
+
+  --color-text-primary: rgba(0, 0, 0, 1);
+  --color-text-secondary: #a0a0a0;
+  --color-text-tertiary: rgba(255, 255, 255, 1);
+
+  --color-accent-primary: #2be080;
+  --color-accent-secondary: #ee3465;
+  
+  --color-link-hover: #3456F3;
+  --color-link-hover-promo-only: #000000;
+
+  /* font sizes / letter-spacing */
+  --text-size-xxs: 12px;
+  --text-size-xs: 13px;
+  --text-size-s: 14px;
+  --text-size-m: 18px;
+  --text-size-l: 20px;
+  --text-size-xl: 30px;
+  --text-size-xxl: 50px;
+
+  --letter-spacing-tight: -0.04em;
+
+  /* page max and min width / section margins */
+  --max-width: 1280px;
+  --max-content-width: calc(var(--max-width) - var(--side-margin-default) * 2);
+  --min-width: 320px;
+
+  --side-margin-default: 70px;
+  --side-margin-l: 70px;
+  --side-margin-m: 70px;
+  --side-margin-s: 70px;
+  --side-margin-xs: 70px;
+}
+
+@media screen and (max-width: 1023px) {
+  :root {
+    --text-size-s: 12px;
+    --text-size-xl: 28px;
+    --text-size-xxl: 40px;
+
+    --side-margin-l: 30px;
+    --side-margin-m: 50px;
+    --side-margin-s: 50px;
+    --side-margin-xs: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --text-size-s: 11px;
+    --text-size-m: 14px;
+    --text-size-l: 18px;
+    --text-size-xl: 18px;
+    --text-size-xxl: 30px;
+
+    --side-margin-m: 18px;
+    --side-margin-s: 14px;
+    --side-margin-xs: 10px;
+  }
+}

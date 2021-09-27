@@ -1,0 +1,22 @@
+.profile {
+  margin: 74px auto auto;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile {
+    margin: 236px auto auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    margin: 71px auto auto;
+  }
+}
+
+@media screen and (max-height: 667px) {
+  .profile {
+    margin: auto;
+    padding: 30px 0;
+  }
+}

@@ -1,0 +1,37 @@
+.close-btn {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: url('../../images/cross-icon.svg') no-repeat 50%;
+  
+  position: absolute;
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+
+.close-btn:hover {
+  opacity: .5;
+}
+
+.close-btn:focus {
+  opacity: .5;
+}
+
+.close-btn_place_side-menu {
+  top: 29px;
+  right: 29px;
+}
+
+.close-btn_place_info-tooltip {
+  top: 19px;
+  right: 19px;
+}
+
+@media screen and (max-width: 767px) {
+  .close-btn_place_side-menu {
+    top: 19px;
+    right: 19px;
+  }
+}

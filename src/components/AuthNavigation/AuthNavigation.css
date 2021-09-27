@@ -1,0 +1,34 @@
+.auth-navigation__items {
+  margin: 0;
+	padding: 0;
+	list-style: none;
+
+	display: flex;
+  justify-content: flex-end;
+  align-items: center;
+	gap: 10px 30px;
+}
+
+.auth-navigation__link {
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+
+  transition: color .3s ease;
+}
+
+.auth-navigation__link:hover {
+  color: rgba(255, 255, 255, .6);
+}
+
+@media screen and (max-width: 767px) {
+  .auth-navigation__links {
+    gap: 10px 14px;
+  }
+  
+  .auth-navigation__link {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+}
