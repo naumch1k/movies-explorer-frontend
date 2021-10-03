@@ -3,32 +3,44 @@ import './Login.css';
 
 import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-const INPUTS_DATA = [
-  {
-    key: 1,
-    type: 'email',
-    id: 'login-email',
-    label: 'E-mail',
-    placeholder: 'E-mail',
-    name: 'email',
-    errorId: "login-email-error",
-    required: true,
-  },
-  {
-    key: 2,
-    type: 'password',
-    id: 'login-password',
-    label: 'Пароль',
-    placeholder: 'Пароль',
-    name: 'password',
-    errorId: "login-password-error",
-    minLength: 8,
-    required: true,
-  },
-]
+function Login({ onLogin }) {
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+    resetForm
+  } = useFormWithValidation({});
 
-function Login() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin(values);
+  }
+
+  const INPUTS_DATA = [
+    {
+      key: 1,
+      type: 'email',
+      id: 'login-email',
+      label: 'E-mail',
+      placeholder: 'E-mail',
+      name: 'email',
+      required: true,
+    },
+    {
+      key: 2,
+      type: 'password',
+      id: 'login-password',
+      label: 'Пароль',
+      placeholder: 'Пароль',
+      name: 'password',
+      minLength: 8,
+      required: true,
+    },
+  ]
+
   return (
     <div className="login">
       <LogoLink 
@@ -43,9 +55,15 @@ function Login() {
         formText="Ещё не зарегистрированы?"
         linkPath="/signup"
         linkText=" Регистрация"
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        values={values}
+        errors={errors}
+        isValid={isValid}
       />
     </div>
   )
 }
 
 export default Login;
+

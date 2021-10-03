@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import ProfileForm from '../ProfileForm/ProfileForm';
 
-function Profile() {
+function Profile({ onSignOut }) {
   const currentUser = useContext(CurrentUserContext);
 
   const [name, setName] = useState('');
@@ -66,6 +66,7 @@ function Profile() {
         buttonText="Сохранить"
         isBeingEdited={isBeingEdited}
         onEditProfile={handleEditProfile}
+        onSignOut={onSignOut}
       />
     </div>
   )

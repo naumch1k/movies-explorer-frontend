@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import SubmitButton from "../SubmitButton/SubmitButton";
 
-function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdited, onEditProfile }) {
+function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdited, onEditProfile, onSignOut }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -51,6 +51,7 @@ function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdit
           <button
             type="button"
             className="profile-form__btn profile-form__btn_use_signout"
+            onClick={onSignOut}
           >
             Выйти из аккаунта
           </button>
