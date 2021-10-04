@@ -13,6 +13,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 import HeaderLayout from '../../layouts/HeaderLayout';
 import HeaderFooterLayout from '../../layouts/HeaderFooterLayout';
+import ProtectedRoute from '../ProtectedRoute';
 
 import mainApi from '../../utils/MainApi';
 import { registrationErrorMessages, loginErrorMessages, DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
@@ -35,9 +36,9 @@ function App() {
       .checkToken()
       .then((res) => {
         setCurrentUser(res.data);
-        setLoggedIn(true);
       })
       .catch((err) => {
+        setLoggedIn(false);
         console.log(`Error: ${err}`);
       })
   }, [])
@@ -76,6 +77,7 @@ function App() {
         handleTokenCheck();
       })
       .then(() => {
+        setLoggedIn(true);
         history.push('/movies');
       })
       .catch((err) => {
@@ -146,28 +148,28 @@ function App() {
                 onOpenMenu={handleSideMenuPopupOpen}
               />
             </Route>
-            <Route path="/movies">
+            <ProtectedRoute path="/movies" loggedIn={loggedIn}>
               <HeaderFooterLayout
                 component={Movies}
                 loggedIn={loggedIn}
                 onOpenMenu={handleSideMenuPopupOpen}
               />
-            </Route>
-            <Route path="/saved-movies">
+            </ProtectedRoute>
+            <ProtectedRoute path="/saved-movies" loggedIn={loggedIn}>
               <HeaderFooterLayout
                 component={SavedMovies}
                 loggedIn={loggedIn}
                 onOpenMenu={handleSideMenuPopupOpen}
               />
-            </Route>
-            <Route path="/profile">
+            </ProtectedRoute>
+            <ProtectedRoute path="/profile" loggedIn={loggedIn}>
               <HeaderLayout
                 component={Profile}
                 loggedIn={loggedIn}
                 onOpenMenu={handleSideMenuPopupOpen}
                 onSignOut={handleSignOut}
               />
-            </Route>
+            </ProtectedRoute>
             <Route path="/signup">
               <Register 
                 onRegistration={handleRegistration}
