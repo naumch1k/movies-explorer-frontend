@@ -8,9 +8,12 @@ class MainApi {
   
   _handleResponse(res) {
     if (res.ok) {
-      return res.json();
+      return Promise.resolve(res.json())
+        .then((data) => {
+          return { data, status: res.status }
+        })
     }
-    return Promise.reject(`Error: ${res.status}`);
+    return Promise.reject(res.status);
   }
 
   register({ email, password, name }) {

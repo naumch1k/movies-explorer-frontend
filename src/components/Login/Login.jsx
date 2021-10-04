@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Login.css';
 
 import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Login({ onLogin }) {
+function Login({ onLogin, authErrorMessage, resetAuthErrorMessage }) {
   const {
     values,
     errors,
     isValid,
     handleChange,
-    resetForm
   } = useFormWithValidation({});
+
+  useEffect(() => {
+    resetAuthErrorMessage();
+  }, [values, resetAuthErrorMessage]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +53,8 @@ function Login({ onLogin }) {
         name="login-form"
         heading="Рады видеть!"
         inputsData={INPUTS_DATA}
-        submitButtonModifier="submit-btn_place_login"
+        authErrorMessage={authErrorMessage}
+        authErrorModifier="auth-error_place_login"
         buttonText="Войти"
         formText="Ещё не зарегистрированы?"
         linkPath="/signup"

@@ -15,6 +15,7 @@ import HeaderLayout from '../../layouts/HeaderLayout';
 import HeaderFooterLayout from '../../layouts/HeaderFooterLayout';
 
 import mainApi from '../../utils/MainApi';
+import { registrationErrorMessages, loginErrorMessages, DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -25,13 +26,15 @@ function App() {
   const [isSideMenuPopupOpen, setSideMenuPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
+  const [authErrorMessage, setAuthErrorMessage] = useState('');
+
   const history = useHistory();
 
   const handleTokenCheck = useCallback(() => {
     mainApi
       .checkToken()
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
         setLoggedIn(true);
       })
       .catch((err) => {
@@ -53,7 +56,16 @@ function App() {
         });
       })
       .catch((err) => {
-        console.log(`Unable to register. ${err}`);
+        switch (err) {
+          case 400:
+            setAuthErrorMessage(registrationErrorMessages.BAD_REQUEST);
+            break;
+          case 409:
+            setAuthErrorMessage(registrationErrorMessages.CONFLICT);
+            break;
+          default:
+            setAuthErrorMessage(DEFAULT_ERROR_MESSAGE);
+        }
       })
   }
 
@@ -67,9 +79,25 @@ function App() {
         history.push('/movies');
       })
       .catch((err) => {
-        console.log(`Unable to login. ${err}`);
+        switch (err) {
+          case 400:
+            setAuthErrorMessage(loginErrorMessages.INVALID_CREDENTIALS);
+            break;
+          case 401:
+            setAuthErrorMessage(loginErrorMessages.UNAUTHORIZED);
+            break;
+          case 500:
+            setAuthErrorMessage(DEFAULT_ERROR_MESSAGE);
+            break;
+          default:
+            setAuthErrorMessage(loginErrorMessages.BAD_REQUEST);
+        }
       })
   }
+
+  const resetAuthErrorMessage = () => {
+    setAuthErrorMessage('');
+  };
 
   const handleSignOut = () => {
     mainApi
@@ -143,11 +171,15 @@ function App() {
             <Route path="/signup">
               <Register 
                 onRegistration={handleRegistration}
+                authErrorMessage={authErrorMessage}
+                resetAuthErrorMessage={resetAuthErrorMessage}
               />
             </Route>
             <Route path="/signin">
               <Login
                 onLogin={handleLogin}
+                authErrorMessage={authErrorMessage}
+                resetAuthErrorMessage={resetAuthErrorMessage}
               />
             </Route>
             <Route path="*">

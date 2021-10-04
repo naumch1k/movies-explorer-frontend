@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Register.css';
 
 import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Register({ onRegistration }) {
+function Register({ onRegistration, authErrorMessage, resetAuthErrorMessage }) {
   const {
     values,
     errors,
     isValid,
     handleChange,
-    resetForm
   } = useFormWithValidation({});
+
+  useEffect(() => {
+    resetAuthErrorMessage();
+  }, [values, resetAuthErrorMessage]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +64,8 @@ function Register({ onRegistration }) {
         name="signup-form"
         heading="Добро пожаловать!"
         inputsData={INPUTS_DATA}
-        submitButtonModifier="submit-btn_place_singup"
+        authErrorModifier="auth-error_place_singup"
+        authErrorMessage={authErrorMessage}
         buttonText="Зарегистрироваться"
         formText="Уже зарегистрированы?"
         linkPath="/signin"

@@ -1,0 +1,16 @@
+.auth-error {
+  min-height: 12px;
+  margin-bottom: 20px;
+  font-size: 11px;
+  line-height: 1.2;
+  color: var(--color-accent-secondary);
+  text-align: center;
+}
+
+.auth-error_place_singup {
+  margin-top: 37px;
+}
+
+.auth-error_place_login {
+  margin-top: 125px;
+}
