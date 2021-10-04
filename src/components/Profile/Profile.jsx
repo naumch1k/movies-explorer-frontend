@@ -44,7 +44,6 @@ function Profile({
       label: 'Имя',
       placeholder: 'Имя',
       name: 'name',
-      errorId: "profile-name-error",
       required: true,
       pattern: '[a-zA-Z -]{2,30}',
     },
@@ -55,8 +54,6 @@ function Profile({
       label: 'E-mail',
       placeholder: 'E-mail',
       name: 'email',
-      errorId: "profile-email-error",
-      minLength: 8,
       required: true,
     },
   ]
