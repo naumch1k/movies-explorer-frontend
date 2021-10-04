@@ -15,7 +15,7 @@ function Login({ onLogin, authErrorMessage, resetAuthErrorMessage }) {
 
   useEffect(() => {
     resetAuthErrorMessage();
-  }, [values, resetAuthErrorMessage]);
+  }, [values]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
