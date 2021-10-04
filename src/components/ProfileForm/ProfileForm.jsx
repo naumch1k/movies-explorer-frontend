@@ -4,11 +4,25 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import SubmitButton from "../SubmitButton/SubmitButton";
 
-function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdited, onEditProfile, onSignOut }) {
+function ProfileForm({
+  name,
+  inputsData,
+  profileErrorMessage,
+  submitButtonModifier,
+  buttonText,
+  isBeingEdited,
+  onEditProfile,
+  onChange,
+  onSubmit,
+  values,
+  errors,
+  isValid,
+  onSignOut,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
-    <form className="profile-form">
+    <form onSubmit={onSubmit} className="profile-form" name={name} noValidate>
       <h2 className="profile-form__heading">Привет, {currentUser.name}!</h2>
       <fieldset className="profile-form__items">
         {inputsData.map((item) => (
@@ -19,23 +33,30 @@ function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdit
               id={item.id}
               type={item.type}
               name={item.name}
-              value={item.value}
-              onChange={item.onChange}
               placeholder={item.placeholder}
               minLength={item.minLength}
               maxLength={item.maxLength}
               required={item.required}
+              disabled={!isBeingEdited}
+              onChange={onChange}
+              value={values[item.name]}
+              pattern={item.pattern}
             />
-            <p className="profile-form__error" id={item.errorId}>{/* Что-то пошло не так... */}</p>
+            <p className="profile-form__item-error" id={item.errorId}>
+              {errors[item.name]}
+            </p>
           </div>
         ))}
       </fieldset>
+      <p className='profile-form__item-error'>
+        {profileErrorMessage}
+      </p>
       {isBeingEdited ? (
         <div className="profile-form__btns">
           <SubmitButton 
             classNameModifier={submitButtonModifier}
             textContent={buttonText}
-            disabled={true}
+            disabled={!isValid}
           />
         </div>
       ) : (

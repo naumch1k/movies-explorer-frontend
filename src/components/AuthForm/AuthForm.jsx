@@ -15,11 +15,11 @@ function AuthForm({
   formText,
   linkPath,
   linkText,
-  onSubmit,
   onChange,
+  onSubmit,
   values,
   errors,
-  isValid
+  isValid,
 }) {
 
   return (

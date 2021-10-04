@@ -32,7 +32,6 @@ function Register({ onRegistration, authErrorMessage, resetAuthErrorMessage }) {
       name: 'name',
       required: true,
       pattern: '[a-zA-Z -]{2,30}',
-      customErrorMessage: 'Пожалуйста, используйте только латинские буквы, пробел и дефис',
     },
     {
       key: 2,
@@ -70,8 +69,8 @@ function Register({ onRegistration, authErrorMessage, resetAuthErrorMessage }) {
         formText="Уже зарегистрированы?"
         linkPath="/signin"
         linkText=" Войти"
-        onSubmit={handleSubmit}
         onChange={handleChange}
+        onSubmit={handleSubmit}
         values={values}
         errors={errors}
         isValid={isValid}

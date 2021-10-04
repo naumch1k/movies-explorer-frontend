@@ -59,8 +59,8 @@ function Login({ onLogin, authErrorMessage, resetAuthErrorMessage }) {
         formText="Ещё не зарегистрированы?"
         linkPath="/signup"
         linkText=" Регистрация"
-        onSubmit={handleSubmit}
         onChange={handleChange}
+        onSubmit={handleSubmit}
         values={values}
         errors={errors}
         isValid={isValid}

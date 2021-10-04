@@ -16,7 +16,7 @@ import HeaderFooterLayout from '../../layouts/HeaderFooterLayout';
 import ProtectedRoute from '../ProtectedRoute';
 
 import mainApi from '../../utils/MainApi';
-import { registrationErrorMessages, loginErrorMessages, DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
+import { registrationErrorMessages, loginErrorMessages, profileErrorMessages, DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -24,28 +24,31 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const [authErrorMessage, setAuthErrorMessage] = useState('');
+  const [profileErrorMessage, setProfileErrorMessage] = useState('');
+  const [profileIsBeingEdited, setProfileIsBeingEdited] = useState(false);
+
   const [isSideMenuPopupOpen, setSideMenuPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
-  const [authErrorMessage, setAuthErrorMessage] = useState('');
-
   const history = useHistory();
 
-  const handleTokenCheck = useCallback(() => {
+  useEffect(() => {
+    handleTokenCheck();
+  }, [])
+
+  const handleTokenCheck = () => {
     mainApi
       .checkToken()
       .then((res) => {
+        setLoggedIn(true);
         setCurrentUser(res.data);
       })
       .catch((err) => {
         setLoggedIn(false);
         console.log(`Error: ${err}`);
       })
-  }, [])
-
-  useEffect(() => {
-    handleTokenCheck();
-  }, [handleTokenCheck])
+  }
 
   const handleRegistration = (data) => {
     mainApi
@@ -77,7 +80,6 @@ function App() {
         handleTokenCheck();
       })
       .then(() => {
-        setLoggedIn(true);
         history.push('/movies');
       })
       .catch((err) => {
@@ -86,20 +88,16 @@ function App() {
             setAuthErrorMessage(loginErrorMessages.INVALID_CREDENTIALS);
             break;
           case 401:
-            setAuthErrorMessage(loginErrorMessages.UNAUTHORIZED);
+            setAuthErrorMessage(loginErrorMessages.INVALID_CREDENTIALS);
             break;
           case 500:
             setAuthErrorMessage(DEFAULT_ERROR_MESSAGE);
             break;
           default:
-            setAuthErrorMessage(loginErrorMessages.BAD_REQUEST);
+            setAuthErrorMessage(loginErrorMessages.UNAUTHORIZED);
         }
       })
   }
-
-  const resetAuthErrorMessage = () => {
-    setAuthErrorMessage('');
-  };
 
   const handleSignOut = () => {
     mainApi
@@ -113,11 +111,40 @@ function App() {
       })
   }
 
-  function handleSideMenuPopupOpen () {
+  const handleUpdateUser = (data) => {
+    mainApi
+      .setUserInfo(data)
+      .then(() => {
+        setCurrentUser(data);
+      })
+      .then(() => {
+        setProfileIsBeingEdited(false);
+      })
+      .catch((err) => {
+        switch (err) {
+          case 409:
+            setProfileErrorMessage(profileErrorMessages.CONFLICT);
+            break;
+          default:
+            setProfileErrorMessage(profileErrorMessages.BAD_REQUEST);
+        }
+      })
+  }
+
+  const handleEditProfile = () => {
+    setProfileIsBeingEdited(true);
+  }
+
+  const resetAllErrorMessages = () => {
+    setAuthErrorMessage('');
+    setProfileErrorMessage('');
+  };
+
+  const handleSideMenuPopupOpen = () => {
     setSideMenuPopupOpen(true);
   }
 
-  function closeAllPopups() {
+  const closeAllPopups = () => {
     setSideMenuPopupOpen(false);
     setIsInfoTooltipPopupOpen(false);
   }
@@ -167,6 +194,11 @@ function App() {
                 component={Profile}
                 loggedIn={loggedIn}
                 onOpenMenu={handleSideMenuPopupOpen}
+                onEditProfile={handleEditProfile}
+                onUpdateUser={handleUpdateUser}
+                isBeingEdited={profileIsBeingEdited}
+                profileErrorMessage={profileErrorMessage}
+                resetProfileErrorMessage={resetAllErrorMessages}
                 onSignOut={handleSignOut}
               />
             </ProtectedRoute>
@@ -174,14 +206,14 @@ function App() {
               <Register 
                 onRegistration={handleRegistration}
                 authErrorMessage={authErrorMessage}
-                resetAuthErrorMessage={resetAuthErrorMessage}
+                resetAuthErrorMessage={resetAllErrorMessages}
               />
             </Route>
             <Route path="/signin">
               <Login
                 onLogin={handleLogin}
                 authErrorMessage={authErrorMessage}
-                resetAuthErrorMessage={resetAuthErrorMessage}
+                resetAuthErrorMessage={resetAllErrorMessages}
               />
             </Route>
             <Route path="*">
