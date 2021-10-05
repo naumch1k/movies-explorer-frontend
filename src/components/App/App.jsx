@@ -10,6 +10,7 @@ import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import SideMenu from '../SideMenu/SideMenu';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import Preloader from '../Preloader/Preloader';
 
 import HeaderLayout from '../../layouts/HeaderLayout';
 import HeaderFooterLayout from '../../layouts/HeaderFooterLayout';
@@ -21,6 +22,8 @@ import { registrationErrorMessages, loginErrorMessages, profileErrorMessages, DE
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -34,21 +37,33 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    handleTokenCheck();
-  }, [])
+    if (loggedIn) {
+      mainApi
+        .getUserInfo()
+        .then((res) => {
+          setCurrentUser(res.data);
+        })
+        .catch((err) => console.log('Couldnt get user info from the server', err));
+    }
+  }, [loggedIn]);
 
-  const handleTokenCheck = () => {
+  const handleTokenCheck = useCallback(() => {
     mainApi
-      .checkToken()
-      .then((res) => {
+      .getUserInfo()
+      .then(() => {
         setLoggedIn(true);
-        setCurrentUser(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         setLoggedIn(false);
+        setIsLoading(false);
         console.log(`Error: ${err}`);
       })
-  }
+  }, [])
+
+  useEffect(() => {
+    handleTokenCheck();
+  }, [handleTokenCheck])
 
   const handleRegistration = (data) => {
     mainApi
@@ -77,9 +92,7 @@ function App() {
     mainApi
       .authorize(data)
       .then(() => {
-        handleTokenCheck();
-      })
-      .then(() => {
+        setLoggedIn(true);
         history.push('/movies');
       })
       .catch((err) => {
@@ -166,60 +179,63 @@ function App() {
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
         <div className="page__container">
-          <Switch>
-            <Route exact path="/">
-              <HeaderFooterLayout
-                component={Main}
-                loggedIn={loggedIn}
-                headerModifier="header_place_landing"
-                onOpenMenu={handleSideMenuPopupOpen}
-              />
-            </Route>
-            <ProtectedRoute path="/movies" loggedIn={loggedIn}>
-              <HeaderFooterLayout
-                component={Movies}
-                loggedIn={loggedIn}
-                onOpenMenu={handleSideMenuPopupOpen}
-              />
-            </ProtectedRoute>
-            <ProtectedRoute path="/saved-movies" loggedIn={loggedIn}>
-              <HeaderFooterLayout
-                component={SavedMovies}
-                loggedIn={loggedIn}
-                onOpenMenu={handleSideMenuPopupOpen}
-              />
-            </ProtectedRoute>
-            <ProtectedRoute path="/profile" loggedIn={loggedIn}>
-              <HeaderLayout
-                component={Profile}
-                loggedIn={loggedIn}
-                onOpenMenu={handleSideMenuPopupOpen}
-                onEditProfile={handleEditProfile}
-                onUpdateUser={handleUpdateUser}
-                isBeingEdited={profileIsBeingEdited}
-                profileErrorMessage={profileErrorMessage}
-                resetProfileErrorMessage={resetAllErrorMessages}
-                onSignOut={handleSignOut}
-              />
-            </ProtectedRoute>
-            <Route path="/signup">
-              <Register 
-                onRegistration={handleRegistration}
-                authErrorMessage={authErrorMessage}
-                resetAuthErrorMessage={resetAllErrorMessages}
-              />
-            </Route>
-            <Route path="/signin">
-              <Login
-                onLogin={handleLogin}
-                authErrorMessage={authErrorMessage}
-                resetAuthErrorMessage={resetAllErrorMessages}
-              />
-            </Route>
-            <Route path="*">
-              <PageNotFound />
-            </Route>
-          </Switch>
+          {isLoading
+            ?<Preloader />
+            :<Switch>
+              <Route exact path="/">
+                <HeaderFooterLayout
+                  component={Main}
+                  loggedIn={loggedIn}
+                  headerModifier="header_place_landing"
+                  onOpenMenu={handleSideMenuPopupOpen}
+                />
+              </Route>
+              <ProtectedRoute path="/movies" loggedIn={loggedIn}>
+                <HeaderFooterLayout
+                  component={Movies}
+                  loggedIn={loggedIn}
+                  onOpenMenu={handleSideMenuPopupOpen}
+                />
+              </ProtectedRoute>
+              <ProtectedRoute path="/saved-movies" loggedIn={loggedIn}>
+                <HeaderFooterLayout
+                  component={SavedMovies}
+                  loggedIn={loggedIn}
+                  onOpenMenu={handleSideMenuPopupOpen}
+                />
+              </ProtectedRoute>
+              <ProtectedRoute path="/profile" loggedIn={loggedIn}>
+                <HeaderLayout
+                  component={Profile}
+                  loggedIn={loggedIn}
+                  onOpenMenu={handleSideMenuPopupOpen}
+                  onEditProfile={handleEditProfile}
+                  onUpdateUser={handleUpdateUser}
+                  isBeingEdited={profileIsBeingEdited}
+                  profileErrorMessage={profileErrorMessage}
+                  resetProfileErrorMessage={resetAllErrorMessages}
+                  onSignOut={handleSignOut}
+                />
+              </ProtectedRoute>
+              <Route path="/signup">
+                <Register 
+                  onRegistration={handleRegistration}
+                  authErrorMessage={authErrorMessage}
+                  resetAuthErrorMessage={resetAllErrorMessages}
+                />
+              </Route>
+              <Route path="/signin">
+                <Login
+                  onLogin={handleLogin}
+                  authErrorMessage={authErrorMessage}
+                  resetAuthErrorMessage={resetAllErrorMessages}
+                />
+              </Route>
+              <Route path="*">
+                <PageNotFound />
+              </Route>
+            </Switch>
+          }
           <SideMenu
             isOpen={isSideMenuPopupOpen}
             onClose={closeAllPopups}
