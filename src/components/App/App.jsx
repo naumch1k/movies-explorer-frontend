@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -218,18 +218,24 @@ function App() {
                 />
               </ProtectedRoute>
               <Route path="/signup">
-                <Register 
-                  onRegistration={handleRegistration}
-                  authErrorMessage={authErrorMessage}
-                  resetAuthErrorMessage={resetAllErrorMessages}
-                />
+                {loggedIn
+                  ? <Redirect to='/movies' />
+                  : <Register 
+                      onRegistration={handleRegistration}
+                      authErrorMessage={authErrorMessage}
+                      resetAuthErrorMessage={resetAllErrorMessages}
+                    />
+                }
               </Route>
               <Route path="/signin">
-                <Login
-                  onLogin={handleLogin}
-                  authErrorMessage={authErrorMessage}
-                  resetAuthErrorMessage={resetAllErrorMessages}
-                />
+                {loggedIn
+                  ? <Redirect to='/movies' />
+                  : <Login
+                      onLogin={handleLogin}
+                      authErrorMessage={authErrorMessage}
+                      resetAuthErrorMessage={resetAllErrorMessages}
+                    />
+                }
               </Route>
               <Route path="*">
                 <PageNotFound />
