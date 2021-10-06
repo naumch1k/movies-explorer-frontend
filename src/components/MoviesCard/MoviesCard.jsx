@@ -3,6 +3,7 @@ import './MoviesCard.css';
 import { useLocation, Link } from 'react-router-dom';
 
 import { MOVIES_URL } from '../../utils/constants';
+import convertDuration from '../../utils/convertDuration';
 
 import { ReactComponent as CheckIcon } from '../../images/check-icon.svg';
 
@@ -40,7 +41,7 @@ function MoviesCard({ card }) {
       </Link>
       <div className="movies-card__desc">
         <h3 className="movies-card__title">{card.nameRU}</h3>
-        <span className="movies-card__duration">{card.duration}</span>
+        <span className="movies-card__duration">{convertDuration(card.duration)}</span>
       </div>
       {location.pathname === '/saved-movies' && 
         <button
