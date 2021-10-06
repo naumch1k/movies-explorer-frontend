@@ -3,6 +3,9 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
+import { useWindowSize } from '../../hooks/useWindowSize';
+import { getCardsRenderSettings } from '../../utils/cardsRenderSettings';
+
 function Movies({ 
   isLoadingData,
   noMoviesFound,
@@ -14,6 +17,8 @@ function Movies({
   const [cardsToRender, setCardsToRender] = useState([]);
   const [isMoreCardsToRender, setIsMoreCardsToRender] = useState(false);
 
+  const { width } = useWindowSize();
+
   useEffect(() => {
     if (moviesData.length <= cardsRenderSettings.total) {
       setNumberOfCardsToRender(moviesData.length);
@@ -23,6 +28,10 @@ function Movies({
       setIsMoreCardsToRender(true);
     }
   }, [moviesData, cardsRenderSettings]);
+
+  useEffect(() => {
+    setCardsRenderSettings(getCardsRenderSettings(width));
+  }, [width]);
 
   useEffect(() => {
     setCardsToRender(moviesData.slice(0, numberOfCardsToRender));
