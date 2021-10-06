@@ -1,7 +1,7 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({ cards }) {
+function MoviesCardList({ cards, onClick, isMoreCardsToRender }) {
     return (
       <section className="movies main__section">
         <div className="main__section-container main__section-container_size_xs">
@@ -13,13 +13,17 @@ function MoviesCardList({ cards }) {
               />
             ))}
           </ul>
-          <button
+          {isMoreCardsToRender && 
+            <button
             className="movies__btn"
             type="button"
             aria-label="Показать больше фильмов"
-          >
-            Ещё
-          </button>
+            onClick={onClick}
+            >
+              Ещё
+            </button>
+          }
+
         </div>
       </section>
     )
