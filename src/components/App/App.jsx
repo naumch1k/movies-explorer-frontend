@@ -17,19 +17,26 @@ import HeaderFooterLayout from '../../layouts/HeaderFooterLayout';
 import ProtectedRoute from '../ProtectedRoute';
 
 import mainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
+import filterMovies from '../../utils/filterMovies';
+
 import { registrationErrorMessages, loginErrorMessages, profileErrorMessages, DEFAULT_ERROR_MESSAGE } from '../../utils/constants';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMovies, setIsLoadingMovies] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const [authErrorMessage, setAuthErrorMessage] = useState('');
   const [profileErrorMessage, setProfileErrorMessage] = useState('');
   const [profileIsBeingEdited, setProfileIsBeingEdited] = useState(false);
+
+  const [moviesData, setMoviesData] = useState([]);
+  const [noMoviesFound, setNoMoviesFound] = useState(false);
 
   const [isSideMenuPopupOpen, setSideMenuPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
@@ -44,6 +51,17 @@ function App() {
           setCurrentUser(res.data);
         })
         .catch((err) => console.log('Couldnt get user info from the server', err));
+
+      setIsLoadingMovies(true);
+
+      moviesApi
+        .getMovies()
+        .then((res) => {
+          localStorage.setItem('movies', JSON.stringify(res.data));
+        })
+        .finally(() => {
+          setIsLoadingMovies(false);
+        })
     }
   }, [loggedIn]);
 
@@ -117,6 +135,7 @@ function App() {
       .signOut()
       .then(() => {
         setLoggedIn(false);
+        localStorage.clear();
         history.push("/");
       })
       .catch((err) => {
@@ -142,6 +161,21 @@ function App() {
             setProfileErrorMessage(profileErrorMessages.BAD_REQUEST);
         }
       })
+  }
+
+  const localMoviesData = JSON.parse(localStorage.getItem('movies'));
+
+  const handleSearchFormSubmit = (searchQuery ) => {
+    let filteredMovies = [];
+    filteredMovies = filterMovies(searchQuery, localMoviesData);
+
+    if (filteredMovies.length === 0) {
+      setNoMoviesFound(true);
+    } else {
+      setNoMoviesFound(false);
+    }
+
+    setMoviesData(filteredMovies);
   }
 
   const handleEditProfile = () => {
@@ -195,6 +229,11 @@ function App() {
                   component={Movies}
                   loggedIn={loggedIn}
                   onOpenMenu={handleSideMenuPopupOpen}
+                  isLoadingData={isLoadingMovies}
+                  noMoviesFound={noMoviesFound}
+                  handleSearchFormSubmit={handleSearchFormSubmit}
+                  moviesData={moviesData}
+
                 />
               </ProtectedRoute>
               <ProtectedRoute path="/saved-movies" loggedIn={loggedIn}>

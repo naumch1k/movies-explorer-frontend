@@ -1,6 +1,8 @@
 import React from 'react';
 import './MoviesCard.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+
+import { MOVIES_URL } from '../../utils/constants';
 
 import { ReactComponent as CheckIcon } from '../../images/check-icon.svg';
 
@@ -25,9 +27,19 @@ function MoviesCard({ card }) {
 
   return (
     <li className="movies-card">
-      <img className="movies-card__image" src={card.thumbnail} alt={`Кадр из фильма ${card.name}`} />
+      <Link
+        to={{ pathname: card.trailerLink }}
+        target="_blank"
+        aria-label={`Открыть трейлер фильма ${card.nameRU} на youtube`}
+      >
+        <img 
+          className="movies-card__image"
+          src={`${MOVIES_URL}${card.image.url}`}
+          alt={`Кадр из фильма ${card.nameRU}`}
+        />
+      </Link>
       <div className="movies-card__desc">
-        <h3 className="movies-card__title">{card.name}</h3>
+        <h3 className="movies-card__title">{card.nameRU}</h3>
         <span className="movies-card__duration">{card.duration}</span>
       </div>
       {location.pathname === '/saved-movies' && 

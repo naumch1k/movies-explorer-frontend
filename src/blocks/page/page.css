@@ -24,6 +24,7 @@
 .page__content {
   flex-grow: 1;
   display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
 .page__footer {
