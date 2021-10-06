@@ -5,7 +5,7 @@ import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Register({ onRegistration, authErrorMessage, resetAuthErrorMessage }) {
+function Register({ onRegistration, authErrorMessage, resetFormErrorMessage }) {
   const {
     values,
     errors,
@@ -14,7 +14,7 @@ function Register({ onRegistration, authErrorMessage, resetAuthErrorMessage }) {
   } = useFormWithValidation({});
 
   useEffect(() => {
-    resetAuthErrorMessage();
+    resetFormErrorMessage();
   }, [values]);
 
   const handleSubmit = (e) => {
@@ -63,9 +63,9 @@ function Register({ onRegistration, authErrorMessage, resetAuthErrorMessage }) {
         name="signup-form"
         heading="Добро пожаловать!"
         inputsData={INPUTS_DATA}
-        authErrorModifier="auth-error_place_singup"
-        authErrorMessage={authErrorMessage}
-        buttonText="Зарегистрироваться"
+        submitGroupModifier="submit-group_place_singup"
+        errorMessage={authErrorMessage}
+        submitButtonTextContent="Зарегистрироваться"
         formText="Уже зарегистрированы?"
         linkPath="/signin"
         linkText=" Войти"

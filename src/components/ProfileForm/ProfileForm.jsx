@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import './ProfileForm.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-import SubmitButton from "../SubmitButton/SubmitButton";
+import SubmitGroup from "../SubmitGroup/SubmitGroup";
 
 function ProfileForm({
   name,
   inputsData,
-  profileErrorMessage,
-  submitButtonModifier,
-  buttonText,
+  errorMessage,
+  submitGroupModifier,
+  submitButtonTextContent,
   isBeingEdited,
   onEditProfile,
   onChange,
@@ -48,17 +48,13 @@ function ProfileForm({
           </div>
         ))}
       </fieldset>
-      <p className='profile-form__item-error'>
-        {profileErrorMessage}
-      </p>
       {isBeingEdited ? (
-        <div className="profile-form__btns">
-          <SubmitButton 
-            classNameModifier={submitButtonModifier}
-            textContent={buttonText}
-            disabled={!isValid}
+          <SubmitGroup
+            classNameModifier={submitGroupModifier}
+            errorMessage={errorMessage}
+            buttonTextContent={submitButtonTextContent}
+            buttonDisabled={!isValid}
           />
-        </div>
       ) : (
         <div className="profile-form__btns">
           <button

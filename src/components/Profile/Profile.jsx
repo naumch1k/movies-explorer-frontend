@@ -10,7 +10,7 @@ function Profile({
   onUpdateUser,
   isBeingEdited,
   profileErrorMessage,
-  resetProfileErrorMessage,
+  resetFormErrorMessage,
   onSignOut
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -28,7 +28,7 @@ function Profile({
   }, [currentUser]);
 
   useEffect(() => {
-    resetProfileErrorMessage();
+    resetFormErrorMessage();
   }, [values]);
 
   const handleSubmit = (e) => {
@@ -63,8 +63,9 @@ function Profile({
       <ProfileForm
         name="profile-form"
         inputsData={INPUTS_DATA}
-        profileErrorMessage={profileErrorMessage}
-        buttonText="Сохранить"
+        submitGroupModifier="submit-group_place_profile"
+        errorMessage={profileErrorMessage}
+        submitButtonTextContent="Сохранить"
         isBeingEdited={isBeingEdited}
         onEditProfile={onEditProfile}
         onChange={handleChange}

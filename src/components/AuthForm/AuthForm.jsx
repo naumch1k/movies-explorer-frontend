@@ -2,16 +2,15 @@ import React from 'react';
 import './AuthForm.css';
 import { Link } from 'react-router-dom';
 
-import AuthError from '../AuthError/AuthError';
-import SubmitButton from '../SubmitButton/SubmitButton';
+import SubmitGroup from '../SubmitGroup/SubmitGroup';
 
 function AuthForm({
   name,
   heading,
   inputsData,
-  authErrorModifier,
-  authErrorMessage,
-  buttonText,
+  submitGroupModifier,
+  errorMessage,
+  submitButtonTextContent,
   formText,
   linkPath,
   linkText,
@@ -48,13 +47,11 @@ function AuthForm({
           </div>
         ))}
       </fieldset>
-      <AuthError
-        classNameModifier={authErrorModifier}
-        errorMessage={authErrorMessage}
-      />
-      <SubmitButton
-        textContent={buttonText}
-        disabled={!isValid}
+      <SubmitGroup
+        classNameModifier={submitGroupModifier}
+        errorMessage={errorMessage}
+        buttonTextContent={submitButtonTextContent}
+        buttonDisabled={!isValid}
       />
       <p className="auth-form__text">
         {formText}

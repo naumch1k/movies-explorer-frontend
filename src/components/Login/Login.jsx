@@ -5,7 +5,7 @@ import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Login({ onLogin, authErrorMessage, resetAuthErrorMessage }) {
+function Login({ onLogin, authErrorMessage, resetFormErrorMessage }) {
   const {
     values,
     errors,
@@ -14,7 +14,7 @@ function Login({ onLogin, authErrorMessage, resetAuthErrorMessage }) {
   } = useFormWithValidation({});
 
   useEffect(() => {
-    resetAuthErrorMessage();
+    resetFormErrorMessage();
   }, [values]);
 
   const handleSubmit = (e) => {
@@ -53,9 +53,9 @@ function Login({ onLogin, authErrorMessage, resetAuthErrorMessage }) {
         name="login-form"
         heading="Рады видеть!"
         inputsData={INPUTS_DATA}
-        authErrorMessage={authErrorMessage}
-        authErrorModifier="auth-error_place_login"
-        buttonText="Войти"
+        submitGroupModifier="submit-group_place_login"
+        errorMessage={authErrorMessage}
+        submitButtonTextContent="Войти"
         formText="Ещё не зарегистрированы?"
         linkPath="/signup"
         linkText=" Регистрация"

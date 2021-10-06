@@ -31,8 +31,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(true);
 
-  const [authErrorMessage, setAuthErrorMessage] = useState('');
-  const [profileErrorMessage, setProfileErrorMessage] = useState('');
+  const [formErrorMessage, setFormErrorMessage] = useState('');
   const [profileIsBeingEdited, setProfileIsBeingEdited] = useState(false);
 
   const [moviesData, setMoviesData] = useState([]);
@@ -95,13 +94,13 @@ function App() {
       .catch((err) => {
         switch (err) {
           case 400:
-            setAuthErrorMessage(registrationErrorMessages.BAD_REQUEST);
+            setFormErrorMessage(registrationErrorMessages.BAD_REQUEST);
             break;
           case 409:
-            setAuthErrorMessage(registrationErrorMessages.CONFLICT);
+            setFormErrorMessage(registrationErrorMessages.CONFLICT);
             break;
           default:
-            setAuthErrorMessage(DEFAULT_ERROR_MESSAGE);
+            setFormErrorMessage(DEFAULT_ERROR_MESSAGE);
         }
       })
   }
@@ -116,16 +115,16 @@ function App() {
       .catch((err) => {
         switch (err) {
           case 400:
-            setAuthErrorMessage(loginErrorMessages.INVALID_CREDENTIALS);
+            setFormErrorMessage(loginErrorMessages.INVALID_CREDENTIALS);
             break;
           case 401:
-            setAuthErrorMessage(loginErrorMessages.INVALID_CREDENTIALS);
+            setFormErrorMessage(loginErrorMessages.INVALID_CREDENTIALS);
             break;
           case 500:
-            setAuthErrorMessage(DEFAULT_ERROR_MESSAGE);
+            setFormErrorMessage(DEFAULT_ERROR_MESSAGE);
             break;
           default:
-            setAuthErrorMessage(loginErrorMessages.UNAUTHORIZED);
+            setFormErrorMessage(loginErrorMessages.UNAUTHORIZED);
         }
       })
   }
@@ -155,10 +154,10 @@ function App() {
       .catch((err) => {
         switch (err) {
           case 409:
-            setProfileErrorMessage(profileErrorMessages.CONFLICT);
+            setFormErrorMessage(profileErrorMessages.CONFLICT);
             break;
           default:
-            setProfileErrorMessage(profileErrorMessages.BAD_REQUEST);
+            setFormErrorMessage(profileErrorMessages.BAD_REQUEST);
         }
       })
   }
@@ -182,9 +181,8 @@ function App() {
     setProfileIsBeingEdited(true);
   }
 
-  const resetAllErrorMessages = () => {
-    setAuthErrorMessage('');
-    setProfileErrorMessage('');
+  const resetAllFormErrorMessages = () => {
+    setFormErrorMessage('');
   };
 
   const handleSideMenuPopupOpen = () => {
@@ -251,8 +249,8 @@ function App() {
                   onEditProfile={handleEditProfile}
                   onUpdateUser={handleUpdateUser}
                   isBeingEdited={profileIsBeingEdited}
-                  profileErrorMessage={profileErrorMessage}
-                  resetProfileErrorMessage={resetAllErrorMessages}
+                  profileErrorMessage={formErrorMessage}
+                  resetFormErrorMessage={resetAllFormErrorMessages}
                   onSignOut={handleSignOut}
                 />
               </ProtectedRoute>
@@ -261,8 +259,8 @@ function App() {
                   ? <Redirect to='/movies' />
                   : <Register 
                       onRegistration={handleRegistration}
-                      authErrorMessage={authErrorMessage}
-                      resetAuthErrorMessage={resetAllErrorMessages}
+                      authErrorMessage={formErrorMessage}
+                      resetFormErrorMessage={resetAllFormErrorMessages}
                     />
                 }
               </Route>
@@ -271,8 +269,8 @@ function App() {
                   ? <Redirect to='/movies' />
                   : <Login
                       onLogin={handleLogin}
-                      authErrorMessage={authErrorMessage}
-                      resetAuthErrorMessage={resetAllErrorMessages}
+                      authErrorMessage={formErrorMessage}
+                      resetFormErrorMessage={resetAllFormErrorMessages}
                     />
                 }
               </Route>
