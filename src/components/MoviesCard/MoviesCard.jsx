@@ -10,6 +10,10 @@ import { ReactComponent as CheckIcon } from '../../images/check-icon.svg';
 function MoviesCard({ card, onCardSaveToggle, onCardDelete }) {
   let location = useLocation();
 
+  const movieTrailerPathName = (
+    location.pathname === '/movies' ? card.trailerLink : card.trailer
+  );
+
   const cardSaveToggleClassName = (
     `movies-card__btn movies-card__btn_use_save ${card.isSaved ? 'movies-card__btn_active' : ''}`
   );
@@ -29,7 +33,7 @@ function MoviesCard({ card, onCardSaveToggle, onCardDelete }) {
   return (
     <li className="movies-card">
       <Link
-        to={{ pathname: card.trailerLink }}
+        to={{ pathname: movieTrailerPathName }}
         target="_blank"
         aria-label={`Открыть трейлер фильма ${card.nameRU} на youtube`}
       >
