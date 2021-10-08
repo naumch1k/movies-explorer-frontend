@@ -1,44 +1,72 @@
-import { useState, useEffect } from 'react';
-import SearchForm from '../SearchForm/SearchForm';
-import Preloader from '../Preloader/Preloader';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { useState, useEffect, useContext } from 'react';
 
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Preloader from '../Preloader/Preloader';
+
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
+import filterMovies from '../../utils/filterMovies';
+import isObjEmpty from '../../utils/isObjEmpty';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { getCardsRenderSettings } from '../../utils/cardsRenderSettings';
 
-function Movies({ 
-  isLoadingData,
-  noMoviesFound,
-  handleSearchFormSubmit,
-  moviesData
-}) {
+function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
+  const [isFilteringMoviesData, setIsFilteringMoviesData] = useState(false);
+  const [prevFilteredMoviesData, setPrevFilteredMoviesData] = useState([]);
+  const [filteredMoviesData, setfilteredMoviesData] = useState([]);
+  const [noMoviesFound, setNoMoviesFound] = useState(false);
+  const [cardsToRender, setCardsToRender] = useState([]);
   const [cardsRenderSettings, setCardsRenderSettings] = useState({total: 12, add: 3});
   const [numberOfCardsToRender, setNumberOfCardsToRender] = useState(0);
-  const [cardsToRender, setCardsToRender] = useState([]);
   const [isMoreCardsToRender, setIsMoreCardsToRender] = useState(false);
 
+  const currentUser = useContext(CurrentUserContext);
   const { width } = useWindowSize();
-
-  useEffect(() => {
-    if (moviesData.length <= cardsRenderSettings.total) {
-      setNumberOfCardsToRender(moviesData.length);
-      setIsMoreCardsToRender(false);
-    } else {
-      setNumberOfCardsToRender(cardsRenderSettings.total)
-      setIsMoreCardsToRender(true);
-    }
-  }, [moviesData, cardsRenderSettings]);
 
   useEffect(() => {
     setCardsRenderSettings(getCardsRenderSettings(width));
   }, [width]);
 
   useEffect(() => {
-    setCardsToRender(moviesData.slice(0, numberOfCardsToRender));
-  }, [numberOfCardsToRender, moviesData]);
+    setCardsToRender(filteredMoviesData.slice(0, numberOfCardsToRender));
+  }, [filteredMoviesData, numberOfCardsToRender]);
 
+  useEffect(() => {
+    if (filteredMoviesData.length <= cardsRenderSettings.total) {
+      setNumberOfCardsToRender(filteredMoviesData.length);
+      setIsMoreCardsToRender(false);
+    } else {
+      setNumberOfCardsToRender(cardsRenderSettings.total)
+      setIsMoreCardsToRender(true);
+    }
+  }, [filteredMoviesData, cardsRenderSettings]);
+
+  useEffect(() => {
+    if (!isObjEmpty(savedMoviesData)) {
+      setCardsToRender(markSavedMovies(prevFilteredMoviesData));
+    }
+  }, [savedMoviesData]);
+
+  const handleSearchFormSubmit = (searchQuery) => {
+    setIsFilteringMoviesData(true);
+
+    let filteredMoviesData = [];
+    filteredMoviesData = markSavedMovies(filterMovies(searchQuery, moviesData));
+
+    if (filteredMoviesData.length === 0) {
+      setNoMoviesFound(true);
+    } else {
+      setNoMoviesFound(false);
+    }
+
+    setfilteredMoviesData(filteredMoviesData);
+    setPrevFilteredMoviesData(filteredMoviesData);
+    setIsFilteringMoviesData(false);
+  }
+  
   const handleRenderMoreClick = () => {
-    let numberOfFoundMovies = moviesData.length;
+    let numberOfFoundMovies = filteredMoviesData.length;
     let newNumberOfCardsToRender = numberOfCardsToRender + cardsRenderSettings.add;
 
     if (newNumberOfCardsToRender >= numberOfFoundMovies) {
@@ -48,21 +76,44 @@ function Movies({
     setNumberOfCardsToRender(newNumberOfCardsToRender);
   };
 
+  const markSavedMovies = (movies) => {
+    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+    const currentUserSavedMovies = savedMovies.filter(savedMovie => savedMovie.owner === currentUser._id);
+
+    return movies.map((movie) => {
+      const {
+        id, country, director, duration, year, description,
+        image, trailerLink, nameRU, nameEN,
+      } = movie;
+
+      let isSaved = false;
+      if (currentUserSavedMovies.some(savedMovie => savedMovie.movieId === id)) isSaved = true;
+  
+      const newMovie = {
+        id, country, director, duration, year, description,
+        image, trailerLink, nameRU, nameEN, isSaved: isSaved,
+      };
+  
+      return newMovie;
+    })
+  }
+
   return (
     <main className="main page__content">
       <SearchForm
         onSubmit={handleSearchFormSubmit}
       />
-      {!isLoadingData && noMoviesFound && (
+      {!isFilteringMoviesData && noMoviesFound && (
         <p>Ничего не найдено</p>
       )}
-      {isLoadingData && (
+      {isFilteringMoviesData && (
         <Preloader />
       )}
-      {!isLoadingData && !noMoviesFound && (
+      {!isFilteringMoviesData && !noMoviesFound && (
         <MoviesCardList
           cards={cardsToRender}
-          onClick={handleRenderMoreClick}
+          onCardSaveToggle={onCardSaveToggle}
+          onRenderMoreClick={handleRenderMoreClick}
           isMoreCardsToRender={isMoreCardsToRender}
         />
       )}

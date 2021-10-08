@@ -24,7 +24,7 @@ class MainApi {
         email,
         password,
         name
-      })
+      }),
     })
     .then(this._handleResponse);
   }
@@ -37,7 +37,7 @@ class MainApi {
       body: JSON.stringify({
         email,
         password
-      })
+      }),
     })
     .then(this._handleResponse);
   }
@@ -67,11 +67,38 @@ class MainApi {
       body: JSON.stringify({
         email: data.email,
         name: data.name,
-      })
+      }),
     })
     .then(this._handleResponse);
   }
 
+  getSavedMovies() {
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'GET',
+      headers: this._headers,
+      credentials: 'include',
+    })
+    .then(this._handleResponse);
+  }
+
+  saveMovie(movie) {
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'POST',
+      headers: this._headers,
+      credentials: 'include',
+      body: JSON.stringify(movie),
+    })
+    .then(this._handleResponse);
+  }
+
+  deleteSavedMovie(movieId) {
+    return fetch(`${this._baseUrl}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+      credentials: 'include',
+    })
+    .then(this._handleResponse);
+  }
 }
 
 const mainApi = new MainApi({
