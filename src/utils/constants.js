@@ -4,6 +4,17 @@ export const MOVIES_API = 'https://api.nomoreparties.co/beatfilm-movies';
 
 export const SHORT_FILM_MAX_DURATION = 40;
 
+export const patterns = {
+  NAME: '[a-zA-Z -]{2,30}',
+  EMAIL: '^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\\.)+[A-Za-z]+$',
+};
+
+export const customErrorMessages = {
+  NAME: 'Используйте только латиницу, пробел или дефис',
+  EMAIL: 'Используйте email формата ivan@example.ru',
+  PASSWORD: 'Минимальная длина пароля - 8 символов',
+};
+
 export const registrationErrorMessages = {
   CONFLICT: 'Пользователь с таким email уже существует.',
   BAD_REQUEST: 'При регистрации пользователя произошла ошибка.',

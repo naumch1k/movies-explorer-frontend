@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import ProfileForm from '../ProfileForm/ProfileForm';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
+import { patterns, customErrorMessages } from '../../utils/constants';
 
 function Profile({
   submitButtonText,
@@ -46,7 +47,8 @@ function Profile({
       placeholder: 'Имя',
       name: 'name',
       required: true,
-      pattern: '[a-zA-Z -]{2,30}',
+      pattern: patterns.NAME,
+      customErrorMessage: customErrorMessages.NAME,
     },
     {
       key: 2,
@@ -56,6 +58,8 @@ function Profile({
       placeholder: 'E-mail',
       name: 'email',
       required: true,
+      pattern: patterns.EMAIL,
+      customErrorMessage: customErrorMessages.EMAIL,
     },
   ]
 

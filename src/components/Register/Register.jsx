@@ -3,7 +3,9 @@ import './Register.css';
 
 import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
+
 import useFormWithValidation from '../../hooks/useFormWithValidation';
+import { patterns, customErrorMessages } from '../../utils/constants';
 
 function Register({
   submitButtonText,
@@ -36,7 +38,8 @@ function Register({
       placeholder: 'Имя',
       name: 'name',
       required: true,
-      pattern: '[a-zA-Z -]{2,30}',
+      pattern: patterns.NAME,
+      customErrorMessage: customErrorMessages.NAME,
     },
     {
       key: 2,
@@ -46,6 +49,8 @@ function Register({
       placeholder: 'E-mail',
       name: 'email',
       required: true,
+      pattern: patterns.EMAIL,
+      customErrorMessage: customErrorMessages.EMAIL,
     },
     {
       key: 3,
@@ -56,6 +61,7 @@ function Register({
       name: 'password',
       minLength: 8,
       required: true,
+      customErrorMessage: customErrorMessages.PASSWORD,
     },
   ]
 

@@ -42,7 +42,7 @@ function AuthForm({
               pattern={item.pattern}
             />
             <p className="auth-form__item-error">
-              {errors[item.name]}
+              {errors[item.name] && item.customErrorMessage}
             </p>
           </div>
         ))}

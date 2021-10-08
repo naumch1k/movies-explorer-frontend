@@ -43,7 +43,7 @@ function ProfileForm({
               pattern={item.pattern}
             />
             <p className="profile-form__item-error" id={item.errorId}>
-              {errors[item.name]}
+              {errors[item.name] && item.customErrorMessage}
             </p>
           </div>
         ))}

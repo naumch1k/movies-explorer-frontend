@@ -3,7 +3,9 @@ import './Login.css';
 
 import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
+
 import useFormWithValidation from '../../hooks/useFormWithValidation';
+import { patterns, customErrorMessages } from '../../utils/constants';
 
 function Login({
   submitButtonText,
@@ -36,6 +38,8 @@ function Login({
       placeholder: 'E-mail',
       name: 'email',
       required: true,
+      pattern: patterns.EMAIL,
+      customErrorMessage: customErrorMessages.EMAIL,
     },
     {
       key: 2,
@@ -46,6 +50,7 @@ function Login({
       name: 'password',
       minLength: 8,
       required: true,
+      customErrorMessage: customErrorMessages.PASSWORD,
     },
   ]
 
