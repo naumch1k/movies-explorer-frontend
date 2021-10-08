@@ -10,7 +10,7 @@ function AuthForm({
   inputsData,
   submitGroupModifier,
   errorMessage,
-  submitButtonTextContent,
+  submitButtonText,
   formText,
   linkPath,
   linkText,
@@ -50,7 +50,7 @@ function AuthForm({
       <SubmitGroup
         classNameModifier={submitGroupModifier}
         errorMessage={errorMessage}
-        buttonTextContent={submitButtonTextContent}
+        buttonText={submitButtonText}
         buttonDisabled={!isValid}
       />
       <p className="auth-form__text">

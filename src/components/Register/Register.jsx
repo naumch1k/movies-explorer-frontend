@@ -5,7 +5,12 @@ import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Register({ onRegistration, authErrorMessage, resetFormErrorMessage }) {
+function Register({
+  submitButtonText,
+  onRegistration,
+  authErrorMessage,
+  resetFormErrorMessage,
+  }) {
   const {
     values,
     errors,
@@ -65,7 +70,7 @@ function Register({ onRegistration, authErrorMessage, resetFormErrorMessage }) {
         inputsData={INPUTS_DATA}
         submitGroupModifier="submit-group_place_singup"
         errorMessage={authErrorMessage}
-        submitButtonTextContent="Зарегистрироваться"
+        submitButtonText={submitButtonText}
         formText="Уже зарегистрированы?"
         linkPath="/signin"
         linkText=" Войти"

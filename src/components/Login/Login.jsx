@@ -5,7 +5,12 @@ import LogoLink from '../LogoLink/LogoLink';
 import AuthForm from '../AuthForm/AuthForm';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Login({ onLogin, authErrorMessage, resetFormErrorMessage }) {
+function Login({
+  submitButtonText,
+  onLogin,
+  authErrorMessage,
+  resetFormErrorMessage,
+  }) {
   const {
     values,
     errors,
@@ -55,7 +60,7 @@ function Login({ onLogin, authErrorMessage, resetFormErrorMessage }) {
         inputsData={INPUTS_DATA}
         submitGroupModifier="submit-group_place_login"
         errorMessage={authErrorMessage}
-        submitButtonTextContent="Войти"
+        submitButtonText={submitButtonText}
         formText="Ещё не зарегистрированы?"
         linkPath="/signup"
         linkText=" Регистрация"

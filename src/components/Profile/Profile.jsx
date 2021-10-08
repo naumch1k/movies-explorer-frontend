@@ -6,12 +6,13 @@ import ProfileForm from '../ProfileForm/ProfileForm';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
 function Profile({
+  submitButtonText,
   onEditProfile,
   onUpdateUser,
   isBeingEdited,
   profileErrorMessage,
   resetFormErrorMessage,
-  onSignOut
+  onSignOut,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -65,7 +66,7 @@ function Profile({
         inputsData={INPUTS_DATA}
         submitGroupModifier="submit-group_place_profile"
         errorMessage={profileErrorMessage}
-        submitButtonTextContent="Сохранить"
+        submitButtonText={submitButtonText}
         isBeingEdited={isBeingEdited}
         onEditProfile={onEditProfile}
         onChange={handleChange}

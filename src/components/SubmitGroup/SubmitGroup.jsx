@@ -4,7 +4,12 @@ import './SubmitGroup.css';
 import SubmitError from '../SubmitError/SubmitError';
 import SubmitButton from '../SubmitButton/SubmitButton';
 
-function SubmitGroup({ classNameModifier, errorMessage, buttonTextContent, buttonDisabled }) {
+function SubmitGroup({
+  classNameModifier,
+  errorMessage,
+  buttonText,
+  buttonDisabled,
+  }) {
   const submitGroupClassName = (
     `submit-group ${!classNameModifier ? '' : classNameModifier}`
   );
@@ -15,7 +20,7 @@ function SubmitGroup({ classNameModifier, errorMessage, buttonTextContent, butto
         errorMessage={errorMessage}
       />
       <SubmitButton
-        textContent={buttonTextContent}
+        text={buttonText}
         disabled={buttonDisabled}
       />
     </div>

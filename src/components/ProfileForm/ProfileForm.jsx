@@ -9,7 +9,7 @@ function ProfileForm({
   inputsData,
   errorMessage,
   submitGroupModifier,
-  submitButtonTextContent,
+  submitButtonText,
   isBeingEdited,
   onEditProfile,
   onChange,
@@ -52,7 +52,7 @@ function ProfileForm({
           <SubmitGroup
             classNameModifier={submitGroupModifier}
             errorMessage={errorMessage}
-            buttonTextContent={submitButtonTextContent}
+            buttonText={submitButtonText}
             buttonDisabled={!isValid}
           />
       ) : (

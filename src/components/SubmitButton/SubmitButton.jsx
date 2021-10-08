@@ -1,7 +1,7 @@
 import React from 'react';
 import './SubmitButton.css';
 
-function SubmitButton({ disabled, textContent }) {
+function SubmitButton({ disabled, text }) {
 
   return (
     <button
@@ -9,7 +9,7 @@ function SubmitButton({ disabled, textContent }) {
       type="submit"
       disabled={disabled}
     >
-      {textContent}
+      {text}
     </button>
   )
 }

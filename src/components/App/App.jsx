@@ -43,6 +43,10 @@ function App() {
   const [isSideMenuPopupOpen, setSideMenuPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
+  const [loginSubmitButtonText, setLoginSubmitButtonText] = useState('Войти');
+  const [registerSubmitButtonText, setRegisterSubmitButtonText] = useState('Зарегистрироваться');
+  const [profileSubmitButtonText, setProfileSubmitButtonText] = useState('Сохранить');
+
   const history = useHistory();
 
   useEffect(() => {
@@ -108,6 +112,8 @@ function App() {
   }, [handleTokenCheck])
 
   const handleRegistration = (data) => {
+    setRegisterSubmitButtonText('Выполняется регистрация...');
+
     mainApi
       .register(data)
       .then(() => {
@@ -128,9 +134,14 @@ function App() {
             setFormErrorMessage(DEFAULT_ERROR_MESSAGE);
         }
       })
+      .finally(() => {
+        setRegisterSubmitButtonText('Зарегистрироваться');
+      })
   }
 
   const handleLogin = (data) => {
+    setLoginSubmitButtonText('Выполняется вход...');
+    
     mainApi
       .authorize(data)
       .then(() => {
@@ -152,6 +163,9 @@ function App() {
             setFormErrorMessage(loginErrorMessages.UNAUTHORIZED);
         }
       })
+      .finally(() => {
+        setLoginSubmitButtonText('Войти');
+      })
   }
 
   const handleSignOut = () => {
@@ -168,6 +182,8 @@ function App() {
   }
 
   const handleUpdateUser = (data) => {
+    setProfileSubmitButtonText('Сохранение...');
+
     mainApi
       .setUserInfo(data)
       .then((res) => {
@@ -185,6 +201,9 @@ function App() {
           default:
             setFormErrorMessage(profileErrorMessages.BAD_REQUEST);
         }
+      })
+      .finally(() => {
+        setProfileSubmitButtonText('Сохранить');
       })
   }
 
@@ -298,6 +317,7 @@ function App() {
                   component={Profile}
                   loggedIn={loggedIn}
                   onOpenMenu={handleSideMenuPopupOpen}
+                  submitButtonText={profileSubmitButtonText}
                   onEditProfile={handleEditProfile}
                   onUpdateUser={handleUpdateUser}
                   isBeingEdited={profileIsBeingEdited}
@@ -309,7 +329,8 @@ function App() {
               <Route path="/signup">
                 {loggedIn
                   ? <Redirect to='/movies' />
-                  : <Register 
+                  : <Register
+                      submitButtonText={registerSubmitButtonText}
                       onRegistration={handleRegistration}
                       authErrorMessage={formErrorMessage}
                       resetFormErrorMessage={resetAllFormErrorMessages}
@@ -320,6 +341,7 @@ function App() {
                 {loggedIn
                   ? <Redirect to='/movies' />
                   : <Login
+                      submitButtonText={loginSubmitButtonText}
                       onLogin={handleLogin}
                       authErrorMessage={formErrorMessage}
                       resetFormErrorMessage={resetAllFormErrorMessages}
