@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Preloader from '../Preloader/Preloader';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -103,20 +102,14 @@ function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
       <SearchForm
         onSubmit={handleSearchFormSubmit}
       />
-      {!isFilteringMoviesData && noMoviesFound && (
-        <p>Ничего не найдено</p>
-      )}
-      {isFilteringMoviesData && (
-        <Preloader />
-      )}
-      {!isFilteringMoviesData && !noMoviesFound && (
-        <MoviesCardList
-          cards={cardsToRender}
-          onCardSaveToggle={onCardSaveToggle}
-          onRenderMoreClick={handleRenderMoreClick}
-          isMoreCardsToRender={isMoreCardsToRender}
-        />
-      )}
+      <MoviesCardList
+        isFilteringMoviesData={isFilteringMoviesData}
+        noMoviesFound={noMoviesFound}
+        cards={cardsToRender}
+        onCardSaveToggle={onCardSaveToggle}
+        onRenderMoreClick={handleRenderMoreClick}
+        isMoreCardsToRender={isMoreCardsToRender}
+      />
     </main>
   )
 }

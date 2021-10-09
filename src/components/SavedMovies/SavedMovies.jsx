@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Preloader from '../Preloader/Preloader';
 
 import filterMovies from '../../utils/filterMovies';
 
@@ -40,18 +39,12 @@ function SavedMovies({ moviesData, onCardDelete }) {
       <SearchForm
         onSubmit={handleSearchFormSubmit}
       />
-      {!isFilteringMoviesData && noMoviesFound && (
-        <p>Ничего не найдено</p>
-      )}
-      {isFilteringMoviesData && (
-        <Preloader />
-      )}
-      {!isFilteringMoviesData && !noMoviesFound && (
       <MoviesCardList
+        isFilteringMoviesData={isFilteringMoviesData}
+        noMoviesFound={noMoviesFound}
         cards={filteredMoviesData}
         onCardDelete={handleCardDelete}
       />
-      )}
     </main>
   )
 }
