@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -15,6 +15,8 @@ function Profile({
   resetFormErrorMessage,
   onSignOut,
 }) {
+  const [infoHasBeenChanged, setInfoHasBeenChanged] = useState(false);
+
   const currentUser = useContext(CurrentUserContext);
 
   const {
@@ -28,6 +30,14 @@ function Profile({
   useEffect(() => {
     resetForm({ name: currentUser.name, email: currentUser.email });
   }, [currentUser]);
+
+  useEffect(() => {
+    if (currentUser.name === values.name && currentUser.email === values.email) {
+      setInfoHasBeenChanged(false);
+    } else {
+      setInfoHasBeenChanged(true);
+    }
+  }, [currentUser, values]);
 
   useEffect(() => {
     resetFormErrorMessage();
@@ -72,6 +82,7 @@ function Profile({
         errorMessage={profileErrorMessage}
         submitButtonText={submitButtonText}
         isBeingEdited={isBeingEdited}
+        infoHasBeenChanged={infoHasBeenChanged}
         onEditProfile={onEditProfile}
         onChange={handleChange}
         onSubmit={handleSubmit}

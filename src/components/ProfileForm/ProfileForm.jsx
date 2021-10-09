@@ -11,6 +11,7 @@ function ProfileForm({
   submitGroupModifier,
   submitButtonText,
   isBeingEdited,
+  infoHasBeenChanged,
   onEditProfile,
   onChange,
   onSubmit,
@@ -53,7 +54,7 @@ function ProfileForm({
             classNameModifier={submitGroupModifier}
             errorMessage={errorMessage}
             buttonText={submitButtonText}
-            buttonDisabled={!isValid}
+            buttonDisabled={!isValid || !infoHasBeenChanged}
           />
       ) : (
         <div className="profile-form__btns">
