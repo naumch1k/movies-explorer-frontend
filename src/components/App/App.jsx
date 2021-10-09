@@ -226,16 +226,16 @@ function App() {
     } else {
       mainApi
         .saveMovie({
-          country: card.country,
-          director: card.director,
-          duration: card.duration,
-          year: card.year,
-          description: card.description,
+          country: card.country || ' ',
+          director: card.director || ' ',
+          duration: card.duration || 0,
+          year: card.year || ' ',
+          description: card.description || ' ',
           image: `${MOVIES_URL}${card.image.url}`,
-          trailer: card.trailerLink,
+          trailer: card.trailerLink || `https://www.youtube.com/results?search_query=слушая+москву+фильм`, /* i've got an idea! */
           thumbnail: `${MOVIES_URL}${card.image.formats.thumbnail.url}`,
-          nameRU: card.nameRU,
-          nameEN: card.nameEN,
+          nameRU: card.nameRU || ' ',
+          nameEN: card.nameEN || ' ',
           movieId: card.id,
         })
         .then((res) => {
