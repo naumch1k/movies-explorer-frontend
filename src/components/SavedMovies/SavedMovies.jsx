@@ -32,7 +32,7 @@ function SavedMovies({ moviesData, onCardDelete }) {
       if (lastSearchResult.length !== 0) {
         setFilteredMoviesData(lastSearchResult);
       } else {
-        setFilteredMoviesData(moviesData);
+        setFilteredMoviesData(filterCurrentUserMoviesData(moviesData));
       }
     }
   }, [isShortfilmCheckboxOn]);
