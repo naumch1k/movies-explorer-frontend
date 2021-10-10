@@ -76,12 +76,6 @@
   color: var(--color-text-tertiary);
 }
 
-.search-form__submit-btn:disabled {
-  background: #ebebeb;
-
-  cursor: not-allowed;
-}
-
 .search-form__submit-btn:hover {
   opacity: .8;
 }

@@ -5,16 +5,17 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-import filterMovies from '../../utils/filterMovies';
+import { filterMovies, filterMoviesByDuration } from '../../utils/filterMovies';
 import isObjEmpty from '../../utils/isObjEmpty';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { getCardsRenderSettings } from '../../utils/cardsRenderSettings';
 
 function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
+  const [isShortfilmCheckboxOn, setIsShortfilmCheckboxOn] = useState(false);
   const [isFilteringMoviesData, setIsFilteringMoviesData] = useState(false);
-  const [prevFilteredMoviesData, setPrevFilteredMoviesData] = useState([]);
-  const [filteredMoviesData, setfilteredMoviesData] = useState([]);
+  const [filteredMoviesData, setFilteredMoviesData] = useState([]);
   const [noMoviesFound, setNoMoviesFound] = useState(false);
+  const [prevRenderedCards, setPrevRenderedCards] = useState([]);
   const [cardsToRender, setCardsToRender] = useState([]);
   const [cardsRenderSettings, setCardsRenderSettings] = useState({total: 12, add: 3});
   const [numberOfCardsToRender, setNumberOfCardsToRender] = useState(0);
@@ -29,6 +30,7 @@ function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
 
   useEffect(() => {
     setCardsToRender(filteredMoviesData.slice(0, numberOfCardsToRender));
+    setPrevRenderedCards(filteredMoviesData.slice(0, numberOfCardsToRender));
   }, [filteredMoviesData, numberOfCardsToRender]);
 
   useEffect(() => {
@@ -43,15 +45,38 @@ function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
 
   useEffect(() => {
     if (!isObjEmpty(savedMoviesData)) {
-      setCardsToRender(markSavedMovies(prevFilteredMoviesData));
+      setCardsToRender(markSavedMovies(prevRenderedCards));
     }
-  }, [savedMoviesData]);
+  }, [savedMoviesData, prevRenderedCards]);
+
+  useEffect(() => {
+    let lastSearchResult = [];
+    if (localStorage.getItem('lastSearchResult')) {
+      lastSearchResult = JSON.parse(localStorage.getItem('lastSearchResult'));
+    }
+
+    if (isShortfilmCheckboxOn) {
+      const lastSearchResultShortfilms = lastSearchResult.filter(filterMoviesByDuration);
+      setFilteredMoviesData(lastSearchResultShortfilms);
+
+      if (lastSearchResultShortfilms.length === 0) {
+        setNoMoviesFound(true);
+      }
+      
+    } else {
+      setFilteredMoviesData(lastSearchResult);
+    }
+  }, [isShortfilmCheckboxOn]);
+
+  const handleCheckboxChange = (state) => {
+    setIsShortfilmCheckboxOn(state);
+  };
 
   const handleSearchFormSubmit = (searchQuery) => {
     setIsFilteringMoviesData(true);
 
     let filteredMoviesData = [];
-    filteredMoviesData = markSavedMovies(filterMovies(searchQuery, moviesData));
+    filteredMoviesData = markSavedMovies(filterMovies(searchQuery, isShortfilmCheckboxOn, moviesData));
 
     if (filteredMoviesData.length === 0) {
       setNoMoviesFound(true);
@@ -59,8 +84,9 @@ function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
       setNoMoviesFound(false);
     }
 
-    setfilteredMoviesData(filteredMoviesData);
-    setPrevFilteredMoviesData(filteredMoviesData);
+    setFilteredMoviesData(filteredMoviesData);
+    localStorage.setItem('lastSearchResult', JSON.stringify(filteredMoviesData));
+
     setIsFilteringMoviesData(false);
   }
   
@@ -76,8 +102,7 @@ function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
   };
 
   const markSavedMovies = (movies) => {
-    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-    const currentUserSavedMovies = savedMovies.filter(savedMovie => savedMovie.owner === currentUser._id);
+    const currentUserSavedMovies = savedMoviesData.filter(savedMovie => savedMovie.owner === currentUser._id);
 
     return movies.map((movie) => {
       const {
@@ -100,6 +125,7 @@ function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
   return (
     <main className="main page__content">
       <SearchForm
+        onCheckboxChange={handleCheckboxChange}
         onSubmit={handleSearchFormSubmit}
       />
       <MoviesCardList

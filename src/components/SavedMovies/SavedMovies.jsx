@@ -3,22 +3,50 @@ import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-import filterMovies from '../../utils/filterMovies';
+import { filterMovies, filterMoviesByDuration } from '../../utils/filterMovies';
 
 function SavedMovies({ moviesData, onCardDelete }) {
+  const [isShortfilmCheckboxOn, setIsShortfilmCheckboxOn] = useState(false);
   const [isFilteringMoviesData, setIsFilteringMoviesData] = useState(false);
-  const [filteredMoviesData, setfilteredMoviesData] = useState([]);
+  const [filteredMoviesData, setFilteredMoviesData] = useState([]);
   const [noMoviesFound, setNoMoviesFound] = useState(false);
 
   useEffect(() => {
-    setfilteredMoviesData(moviesData);
+    let lastSearchResult = [];
+    if (localStorage.getItem('lastSavedMoviesSearchResult')) {
+      lastSearchResult = JSON.parse(localStorage.getItem('lastSavedMoviesSearchResult'));
+    }
+
+    if (isShortfilmCheckboxOn) {
+      const lastSearchResultShortfilms = filteredMoviesData.filter(filterMoviesByDuration);
+      setFilteredMoviesData(lastSearchResultShortfilms);
+
+      if (lastSearchResultShortfilms.length === 0) {
+        setNoMoviesFound(true);
+      }
+
+    } else {
+      if (lastSearchResult.length !== 0) {
+        setFilteredMoviesData(lastSearchResult);
+      } else {
+        setFilteredMoviesData(moviesData);
+      }
+    }
+  }, [isShortfilmCheckboxOn]);
+
+  useEffect(() => {
+    setFilteredMoviesData(moviesData);
   }, [moviesData]);
+
+  const handleCheckboxChange = (state) => {
+    setIsShortfilmCheckboxOn(state);
+  };
 
   const handleSearchFormSubmit = (searchQuery) => {
     setIsFilteringMoviesData(true);
     
     let filteredMoviesData = [];
-    filteredMoviesData = filterMovies(searchQuery, moviesData);
+    filteredMoviesData = filterMovies(searchQuery, isShortfilmCheckboxOn, moviesData);
 
     if (filteredMoviesData.length === 0) {
       setNoMoviesFound(true);
@@ -26,7 +54,9 @@ function SavedMovies({ moviesData, onCardDelete }) {
       setNoMoviesFound(false);
     }
 
-    setfilteredMoviesData(filteredMoviesData);
+    setFilteredMoviesData(filteredMoviesData);
+    localStorage.setItem('lastSavedMoviesSearchResult', JSON.stringify(filteredMoviesData));
+
     setIsFilteringMoviesData(false);
   }
 
@@ -37,6 +67,7 @@ function SavedMovies({ moviesData, onCardDelete }) {
   return (
     <main className="main page__content">
       <SearchForm
+        onCheckboxChange={handleCheckboxChange}
         onSubmit={handleSearchFormSubmit}
       />
       <MoviesCardList

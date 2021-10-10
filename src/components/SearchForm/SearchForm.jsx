@@ -1,26 +1,36 @@
+import { useState, useEffect } from 'react';
 import './SearchForm.css'
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-import useFormWithValidation from '../../hooks/useFormWithValidation';
-
 import { ReactComponent as SearchIcon } from '../../images/search-icon.svg';
 
-function SearchForm({ onSubmit }) {
-  const {
-    errors,
-    isValid,
-    values,
-    handleChange,
-  } = useFormWithValidation({});
+function SearchForm({ onCheckboxChange, onSubmit }) {
+  const [errorMessage, setErrorMessage] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    setErrorMessage('');
+  }, [searchQuery]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(values);
+
+    if (!searchQuery) {
+      setErrorMessage('Нужно ввести ключевое слово');
+      return;
+    }
+
+    onSubmit(searchQuery);
   };
 
+  const handleSearchQueryChange = (e) => {
+    const target = e.target;
+    setSearchQuery(target.value);
+  }
+
   const handleCheckboxChange = (e) => {
-    const checkbox = e.target;
-    values.shortfilm = checkbox.checked;
+    const target = e.target;
+    onCheckboxChange(target.checked);
   }
 
   return (
@@ -39,17 +49,16 @@ function SearchForm({ onSubmit }) {
               name="keyword"
               placeholder="Фильм"
               required
-              onChange={handleChange}
+              onChange={handleSearchQueryChange}
             />
             <p className="search-form__item-error">
-              {errors['keyword']}
+              {errorMessage}
             </p>
           </label>
           <button
             className="search-form__submit-btn"
             type="submit"
             aria-label="Найти фильмы"
-            disabled={!isValid}
           >
             <SearchIcon
               className="search-form__submit-btn-icon"
