@@ -1,6 +1,6 @@
 # Portfolio project: "Movies Explorer"
 
-*Read this in other languages:* [RU]()
+*Read this in other languages:* [RU](https://github.com/naumch1k/movies-explorer-frontend/blob/level-3/README.RU.md)
 
 frontend (React JS) for the final project @ [Yandex.Practicum](https://practicum.yandex.com/web/ "Web Development Program")
 

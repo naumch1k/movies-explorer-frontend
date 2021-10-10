@@ -1,6 +1,6 @@
 # Учебный проект: "Movies Explorer"
 
-*Read this in other languages:* [EN]()
+*Read this in other languages:* [EN](https://github.com/naumch1k/movies-explorer-frontend/blob/level-3/README.md)
 
 фронтенд учебного проекта в [Yandex Практикуме](https://praktikum.yandex.ru/web/ "Курс Веб-разработчик")
 
