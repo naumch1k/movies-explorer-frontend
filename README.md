@@ -1,4 +1,7 @@
 # Portfolio project: "Movies Explorer"
+
+*Read this in other languages:* [RU]()
+
 frontend (React JS) for the final project @ [Yandex.Practicum](https://practicum.yandex.com/web/ "Web Development Program")
 
 [Figma Mock Up](https://www.figma.com/file/c4kBXWfzL7N4MSpXbHk6u9/YP-Diploma?node-id=891%3A3857)
@@ -14,8 +17,15 @@ password: *testtest*
 ## Description
 "Movies Explorer" is an online app that allows users to look up movies and save the best ones to a Favorite Movies tab
 
+### Functionality
+* User authorization and registration
+* Edit user profile info
+* Search movies by keyword
+* Filter shortfilms
+* Save movies to Fav tab / Delete movies from Fav tab
+
 ## Tech
-React JS | BEM | Adaptive design | Flexbox and Grid Layout
+JavaScript | React JS | CSS3 | BEM | Adaptive design
 
 ## Installation & Usage
 
@@ -36,3 +46,9 @@ In the project directory, you can run:
 `npm run build`
 
 > Builds the app for production to the `build` folder
+
+## TO DO
+- [ ] add reset search button at saved movies
+- [ ] program search with more than one keyword
+- [ ] fix some minor bugs (e.g. when click shortfilm filter before form submit it shows no result message)
+- [ ] refactor code
