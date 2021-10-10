@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { filterMovies, filterMoviesByDuration } from '../../utils/filterMovies';
 
 function SavedMovies({ moviesData, onCardDelete }) {
@@ -10,6 +11,8 @@ function SavedMovies({ moviesData, onCardDelete }) {
   const [isFilteringMoviesData, setIsFilteringMoviesData] = useState(false);
   const [filteredMoviesData, setFilteredMoviesData] = useState([]);
   const [noMoviesFound, setNoMoviesFound] = useState(false);
+
+  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
     let lastSearchResult = [];
@@ -35,7 +38,7 @@ function SavedMovies({ moviesData, onCardDelete }) {
   }, [isShortfilmCheckboxOn]);
 
   useEffect(() => {
-    setFilteredMoviesData(moviesData);
+    setFilteredMoviesData(filterCurrentUserMoviesData(moviesData));
   }, [moviesData]);
 
   const handleCheckboxChange = (state) => {
@@ -46,7 +49,7 @@ function SavedMovies({ moviesData, onCardDelete }) {
     setIsFilteringMoviesData(true);
     
     let filteredMoviesData = [];
-    filteredMoviesData = filterMovies(searchQuery, isShortfilmCheckboxOn, moviesData);
+    filteredMoviesData = filterMovies(searchQuery, isShortfilmCheckboxOn, filterCurrentUserMoviesData(moviesData));
 
     if (filteredMoviesData.length === 0) {
       setNoMoviesFound(true);
@@ -58,6 +61,12 @@ function SavedMovies({ moviesData, onCardDelete }) {
     localStorage.setItem('lastSavedMoviesSearchResult', JSON.stringify(filteredMoviesData));
 
     setIsFilteringMoviesData(false);
+  }
+
+  const filterCurrentUserMoviesData = (moviesData) => {
+    return moviesData.filter(
+      (card) => !card.owner || (card.owner._id ?? card.owner) === currentUser._id,
+    );
   }
 
   const handleCardDelete = (card) => {
