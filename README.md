@@ -15,7 +15,7 @@ password: *testtest*
 "Movies Explorer" is an online app that allows users to look up movies and save the best ones to a Favorite Movies tab
 
 ## Tech
-React JS | BEM Methodology, File Structure and File Paths (Nested BEM) | Adaptive design | Flexbox and Grid Layout
+React JS | BEM | Adaptive design | Flexbox and Grid Layout
 
 ## Installation & Usage
 
