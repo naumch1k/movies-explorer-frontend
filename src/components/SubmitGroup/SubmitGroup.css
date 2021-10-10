@@ -9,3 +9,9 @@
 .submit-group_place_profile {
   margin-top: 175px;
 }
+
+@media screen and (max-width: 767px) {
+  .submit-group_place_profile {
+    margin-top: auto;
+  }
+}
