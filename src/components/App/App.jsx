@@ -42,6 +42,7 @@ function App() {
 
   const [isSideMenuPopupOpen, setSideMenuPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
+  const [infoTooltipMessage, setIinfoTooltipMessage] = useState('');
 
   const [loginSubmitButtonText, setLoginSubmitButtonText] = useState('Войти');
   const [registerSubmitButtonText, setRegisterSubmitButtonText] = useState('Зарегистрироваться');
@@ -192,6 +193,8 @@ function App() {
       })
       .then(() => {
         setProfileIsBeingEdited(false);
+        setIinfoTooltipMessage(profileErrorMessages.SUCCESS);
+        setIsInfoTooltipPopupOpen(true);
       })
       .catch((err) => {
         switch (err) {
@@ -360,6 +363,7 @@ function App() {
           />
           <InfoTooltip
             isOpen={isInfoTooltipPopupOpen}
+            message={infoTooltipMessage}
             onClose={closeAllPopups}
           />
         </div>
