@@ -10,7 +10,7 @@ import isObjEmpty from '../../utils/isObjEmpty';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { getCardsRenderSettings } from '../../utils/cardsRenderSettings';
 
-function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
+function Movies({ moviesData, savedMoviesData, onNoMoviesData, onCardSaveToggle }) {
   const [isShortfilmCheckboxOn, setIsShortfilmCheckboxOn] = useState(false);
   const [isFilteringMoviesData, setIsFilteringMoviesData] = useState(false);
   const [filteredMoviesData, setFilteredMoviesData] = useState([]);
@@ -72,22 +72,30 @@ function Movies({ moviesData, savedMoviesData, onCardSaveToggle }) {
     setIsShortfilmCheckboxOn(state);
   };
 
+  const handleNoMoviesData = () => {
+    onNoMoviesData();
+  }
+
   const handleSearchFormSubmit = (searchQuery) => {
-    setIsFilteringMoviesData(true);
+    if (isObjEmpty(moviesData)) {
+      handleNoMoviesData();
+    } else {    
+      setIsFilteringMoviesData(true);
 
-    let filteredMoviesData = [];
-    filteredMoviesData = markSavedMovies(filterMovies(searchQuery, isShortfilmCheckboxOn, moviesData));
+      let filteredMoviesData = [];
+      filteredMoviesData = markSavedMovies(filterMovies(searchQuery, isShortfilmCheckboxOn, moviesData));
 
-    if (filteredMoviesData.length === 0) {
-      setNoMoviesFound(true);
-    } else {
-      setNoMoviesFound(false);
+      if (filteredMoviesData.length === 0) {
+        setNoMoviesFound(true);
+      } else {
+        setNoMoviesFound(false);
+      }
+
+      setFilteredMoviesData(filteredMoviesData);
+      localStorage.setItem('lastSearchResult', JSON.stringify(filteredMoviesData));
+
+      setIsFilteringMoviesData(false);
     }
-
-    setFilteredMoviesData(filteredMoviesData);
-    localStorage.setItem('lastSearchResult', JSON.stringify(filteredMoviesData));
-
-    setIsFilteringMoviesData(false);
   }
   
   const handleRenderMoreClick = () => {

@@ -23,6 +23,7 @@ import {
   registrationErrorMessages,
   loginErrorMessages,
   profileErrorMessages,
+  SERVER_ERROR_MESSAGE,
   DEFAULT_ERROR_MESSAGE,
   MOVIES_URL
 } from '../../utils/constants';
@@ -251,6 +252,11 @@ function App() {
     }
   }
 
+  const handleNoMoviesData = () => {
+    setIsInfoTooltipPopupOpen(true);
+    setIinfoTooltipMessage(SERVER_ERROR_MESSAGE);
+  }
+
   const handleEditProfile = () => {
     setProfileIsBeingEdited(true);
   }
@@ -303,6 +309,7 @@ function App() {
                   onOpenMenu={handleSideMenuPopupOpen}
                   moviesData={moviesData}
                   savedMoviesData={savedMoviesData}
+                  onNoMoviesData={handleNoMoviesData}
                   onCardSaveToggle={handleCardSaveToggle}
                 />
               </ProtectedRoute>
