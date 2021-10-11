@@ -1,6 +1,6 @@
 # Portfolio project: "Movies Explorer"
 
-*Read this in other languages:* [RU](https://github.com/naumch1k/movies-explorer-frontend/blob/level-3/README.RU.md)
+*Read this in other languages:* [RU](https://github.com/naumch1k/movies-explorer-frontend/blob/main/README.RU.md)
 
 frontend (React JS) for the final project @ [Yandex.Practicum](https://practicum.yandex.com/web/ "Web Development Program")
 
@@ -48,6 +48,7 @@ In the project directory, you can run:
 > Builds the app for production to the `build` folder
 
 ## TO DO
+- [ ] translate to EN
 - [ ] add reset search button at saved movies
 - [ ] program search with more than one keyword
 - [ ] fix some minor bugs (e.g. when click shortfilm filter before form submit it shows no result message)
