@@ -3,12 +3,12 @@ import './InfoTooltip.css';
 
 import CloseButton from '../CloseButton/CloseButton';
 
-function InfoTooltip({ isOpen, onClose }) {
+function InfoTooltip({ isOpen, message, onClose }) {
   return (
     <div className={`popup ${isOpen && 'popup_opened'}`}>
       <div className="popup__container">
         <p className="popup__message">
-          Тут будет сообщение
+          {message}
         </p>
         <CloseButton 
           classNameModifier="close-btn_place_info-tooltip"

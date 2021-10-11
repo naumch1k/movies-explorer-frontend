@@ -19,6 +19,7 @@
 .search-form__label {
   cursor: pointer;
 
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -35,7 +36,7 @@
 
 .search-form__item {
   width: 100%;
-  padding: 10px 0;
+  padding: 10px;
   font-family: inherit;
   font-size: var(--text-size-m);
   line-height: 1.1;
@@ -46,6 +47,17 @@
 
 .search-form__item::placeholder {
   color: var(--color-text-secondary);
+}
+
+.search-form__item-error {
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--color-accent-secondary);
+
+  position: absolute;
+  right: 10px;
+
+  cursor: text;
 }
 
 .search-form__submit-btn {

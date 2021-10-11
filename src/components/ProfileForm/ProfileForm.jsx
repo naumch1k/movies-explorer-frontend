@@ -2,13 +2,28 @@ import React, { useContext } from "react";
 import './ProfileForm.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-import SubmitButton from "../SubmitButton/SubmitButton";
+import SubmitGroup from "../SubmitGroup/SubmitGroup";
 
-function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdited, onEditProfile }) {
+function ProfileForm({
+  name,
+  inputsData,
+  errorMessage,
+  submitGroupModifier,
+  submitButtonText,
+  isBeingEdited,
+  infoHasBeenChanged,
+  onEditProfile,
+  onChange,
+  onSubmit,
+  values,
+  errors,
+  isValid,
+  onSignOut,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
-    <form className="profile-form">
+    <form onSubmit={onSubmit} className="profile-form" name={name} noValidate>
       <h2 className="profile-form__heading">Привет, {currentUser.name}!</h2>
       <fieldset className="profile-form__items">
         {inputsData.map((item) => (
@@ -19,25 +34,28 @@ function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdit
               id={item.id}
               type={item.type}
               name={item.name}
-              value={item.value}
-              onChange={item.onChange}
               placeholder={item.placeholder}
               minLength={item.minLength}
               maxLength={item.maxLength}
               required={item.required}
+              disabled={!isBeingEdited}
+              onChange={onChange}
+              value={values[item.name]}
+              pattern={item.pattern}
             />
-            <p className="profile-form__error" id={item.errorId}>{/* Что-то пошло не так... */}</p>
+            <p className="profile-form__item-error" id={item.errorId}>
+              {errors[item.name] && item.customErrorMessage}
+            </p>
           </div>
         ))}
       </fieldset>
       {isBeingEdited ? (
-        <div className="profile-form__btns">
-          <SubmitButton 
-            classNameModifier={submitButtonModifier}
-            textContent={buttonText}
-            disabled={true}
+          <SubmitGroup
+            classNameModifier={submitGroupModifier}
+            errorMessage={errorMessage}
+            buttonText={submitButtonText}
+            buttonDisabled={!isValid || !infoHasBeenChanged}
           />
-        </div>
       ) : (
         <div className="profile-form__btns">
           <button
@@ -51,6 +69,7 @@ function ProfileForm({ inputsData, submitButtonModifier, buttonText, isBeingEdit
           <button
             type="button"
             className="profile-form__btn profile-form__btn_use_signout"
+            onClick={onSignOut}
           >
             Выйти из аккаунта
           </button>

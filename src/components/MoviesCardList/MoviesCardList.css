@@ -41,6 +41,14 @@
   background-color: rgba(249, 249, 249, .8);
 }
 
+.movies__message {
+  margin: 0;
+  font-size: var(--text-size-m);
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
 @media screen and (max-width: 1023px) {
   .movies__list {
     grid-template-columns: repeat(auto-fill, 339px);

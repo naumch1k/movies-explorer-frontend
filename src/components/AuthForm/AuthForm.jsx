@@ -2,21 +2,27 @@ import React from 'react';
 import './AuthForm.css';
 import { Link } from 'react-router-dom';
 
-import SubmitButton from '../SubmitButton/SubmitButton';
+import SubmitGroup from '../SubmitGroup/SubmitGroup';
 
-function AuthForm({ 
+function AuthForm({
   name,
   heading,
   inputsData,
-  submitButtonModifier,
-  buttonText,
+  submitGroupModifier,
+  errorMessage,
+  submitButtonText,
   formText,
   linkPath,
-  linkText
+  linkText,
+  onChange,
+  onSubmit,
+  values,
+  errors,
+  isValid,
 }) {
 
   return (
-    <form className="auth-form" name={name}>
+    <form onSubmit={onSubmit} className="auth-form" name={name} noValidate>
       <h2 className="auth-form__heading">{heading}</h2>
       <fieldset className="auth-form__items">
         {inputsData.map((item) => (
@@ -31,15 +37,21 @@ function AuthForm({
               minLength={item.minLength}
               maxLength={item.maxLength}
               required={item.required}
+              onChange={onChange}
+              value={values[item.name]}
+              pattern={item.pattern}
             />
-            <p className="auth-form__error" id={item.errorId}>{/* Что-то пошло не так... */}</p>
+            <p className="auth-form__item-error">
+              {errors[item.name] && item.customErrorMessage}
+            </p>
           </div>
         ))}
       </fieldset>
-      <SubmitButton
-        classNameModifier={submitButtonModifier}
-        textContent={buttonText}
-        disabled={true}
+      <SubmitGroup
+        classNameModifier={submitGroupModifier}
+        errorMessage={errorMessage}
+        buttonText={submitButtonText}
+        buttonDisabled={!isValid}
       />
       <p className="auth-form__text">
         {formText}

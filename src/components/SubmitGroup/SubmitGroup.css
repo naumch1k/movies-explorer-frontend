@@ -1,0 +1,17 @@
+.submit-group_place_login {
+  margin-top: 125px;
+}
+
+.submit-group_place_singup {
+  margin-top: 37px;
+}
+
+.submit-group_place_profile {
+  margin-top: 175px;
+}
+
+@media screen and (max-width: 767px) {
+  .submit-group_place_profile {
+    margin-top: auto;
+  }
+}

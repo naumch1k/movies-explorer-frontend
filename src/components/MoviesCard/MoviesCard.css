@@ -36,13 +36,16 @@
 }
 
 .movies-card__duration {
+  min-width: 53px;
   margin: 0;
   padding: 4px 8px;
   font-size: 11px;
   line-height: 0.9;
   color: var(--color-text-secondary);
   background: #f9f9f9;
+  text-align: center;
   border-radius: 3px;
+  box-sizing: border-box;
 }
 
 .movies-card__btn {
