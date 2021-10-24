@@ -15,7 +15,7 @@ function ProfileButton({ onClick }) {
         className="profile-btn__icon"
         fill="currentColor"
       />
-      Аккаунт
+      Profile
     </NavLink>
   );
 }

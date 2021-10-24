@@ -24,7 +24,7 @@ function ProfileForm({
 
   return (
     <form onSubmit={onSubmit} className="profile-form" name={name} noValidate>
-      <h2 className="profile-form__heading">Привет, {currentUser.name}!</h2>
+      <h2 className="profile-form__heading">Hi, {currentUser.name}!</h2>
       <fieldset className="profile-form__items">
         {inputsData.map((item) => (
           <div className="profile-form__item-container" key={item.key}>
@@ -62,23 +62,20 @@ function ProfileForm({
             type="button"
             className="profile-form__btn profile-form__btn_use_edit"
             onClick={onEditProfile}
-            aria-label="Редактировать профиль"
+            aria-label="Edit profile"
           >
-            Редактировать
+            Edit Profile
           </button>
           <button
             type="button"
             className="profile-form__btn profile-form__btn_use_signout"
             onClick={onSignOut}
           >
-            Выйти из аккаунта
+            Log Out
           </button>
         </div>
       )
       }
-
-
-
     </form>
   )
 }

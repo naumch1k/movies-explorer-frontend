@@ -34,8 +34,8 @@ function Login({
       key: 1,
       type: 'email',
       id: 'login-email',
-      label: 'E-mail',
-      placeholder: 'E-mail',
+      label: 'Email',
+      placeholder: 'Email',
       name: 'email',
       required: true,
       pattern: patterns.EMAIL,
@@ -45,8 +45,8 @@ function Login({
       key: 2,
       type: 'password',
       id: 'login-password',
-      label: 'Пароль',
-      placeholder: 'Пароль',
+      label: 'Password',
+      placeholder: 'Password',
       name: 'password',
       minLength: 8,
       required: true,
@@ -61,14 +61,14 @@ function Login({
       />
       <AuthForm
         name="login-form"
-        heading="Рады видеть!"
+        heading="Log in"
         inputsData={INPUTS_DATA}
         submitGroupModifier="submit-group_place_login"
         errorMessage={authErrorMessage}
         submitButtonText={submitButtonText}
-        formText="Ещё не зарегистрированы?"
+        formText="Not a member yet?"
         linkPath="/signup"
-        linkText=" Регистрация"
+        linkText=" Sign up here!"
         onChange={handleChange}
         onSubmit={handleSubmit}
         values={values}

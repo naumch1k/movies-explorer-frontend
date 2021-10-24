@@ -23,25 +23,22 @@ function AboutMe() {
     <section className="about-me main__section">
       <div className="main__section-container main__section-container_size_s">
         <SectionTitle 
-          title="Студент"
+          title="Author"
         />
         <div className="about-me__content">
           <img
             className="about-me__image"
             src={AboutMeImage}
-            alt="Личное фото"
+            alt="Author's personal pic"
           />
           <div className="about-me__student">
             <div className="about-me__bio">
-            <h2 className="about-me__subtitle">Ирина</h2>
+            <h2 className="about-me__subtitle">Irina Naumchik</h2>
               <p className="about-me__headline">
-                Фронтенд-разработчица, 30 лет
+                Web-Developer, Chicago
               </p>
               <p className="about-me__text">
-                Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена и дочь. 
-                Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. 
-                С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке,
-                начал заниматься фриланс-заказами и ушёл с постоянной работы.
+                Web Dev learner, natural problem solver with an inborn curiosity for how and why things work. Passionate and driven by constant self-growth, and eager to help companies become successful.
               </p>
             </div>
             <ul className="about-me__links">

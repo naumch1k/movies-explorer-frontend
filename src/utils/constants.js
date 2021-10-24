@@ -10,28 +10,28 @@ export const patterns = {
 };
 
 export const customErrorMessages = {
-  NAME: 'Используйте только латиницу, пробел или дефис',
-  EMAIL: 'Используйте email формата ivan@example.ru',
-  PASSWORD: 'Минимальная длина пароля - 8 символов',
+  NAME: 'Please match requested format: a-z, - or _',
+  EMAIL: 'Please match requested format: johnsmith@gmail.com',
+  PASSWORD: 'Must be at least 8 characters',
 };
 
 export const registrationErrorMessages = {
-  CONFLICT: 'Пользователь с таким email уже существует.',
-  BAD_REQUEST: 'При регистрации пользователя произошла ошибка.',
+  CONFLICT: 'This email is already registered',
+  BAD_REQUEST: 'There was a problem creating your profile. Please try again later',
 };
 
 export const loginErrorMessages = {
-  INVALID_CREDENTIALS: 'Вы ввели неправильный логин или пароль.',
-  UNAUTHORIZED: 'При авторизации произошла ошибка. Токен не передан или передан не в том формате.',
-  BAD_REQUEST: 'При авторизации произошла ошибка. Переданный токен некорректен.',
+  INVALID_CREDENTIALS: 'The email or password you entered is incorrect',
+  UNAUTHORIZED: 'Authorization failed. Token does not match requested format',
+  BAD_REQUEST: 'Authorization failed. Token is incorrect',
 };
 
 export const profileErrorMessages = {
-  SUCCESS: 'Ваш профиль был успешно обновлен',
-  CONFLICT: 'Пользователь с таким email уже существует.',
-  BAD_REQUEST: 'При обновлении профиля произошла ошибка.',
+  SUCCESS: 'Your profile has been updated',
+  CONFLICT: 'This email is already registered',
+  BAD_REQUEST: 'There was a problem updating your profile. Please try again later',
 };
 
-export const SERVER_ERROR_MESSAGE = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
+export const SERVER_ERROR_MESSAGE = 'The server encountered an error. This could be due to a problem with your Internet connection. Please try again later';
 
-export const DEFAULT_ERROR_MESSAGE = 'На сервере произошла ошибка';
+export const DEFAULT_ERROR_MESSAGE = 'The Server Encountered an Error. Please try again later';

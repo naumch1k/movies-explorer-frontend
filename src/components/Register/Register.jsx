@@ -34,8 +34,8 @@ function Register({
       key: 1,
       type: 'text',
       id: 'signin-name',
-      label: 'Имя',
-      placeholder: 'Имя',
+      label: 'Username',
+      placeholder: 'Enter your username',
       name: 'name',
       required: true,
       pattern: patterns.NAME,
@@ -45,8 +45,8 @@ function Register({
       key: 2,
       type: 'email',
       id: 'signin-email',
-      label: 'E-mail',
-      placeholder: 'E-mail',
+      label: 'Email',
+      placeholder: 'Enter email',
       name: 'email',
       required: true,
       pattern: patterns.EMAIL,
@@ -56,8 +56,8 @@ function Register({
       key: 3,
       type: 'password',
       id: 'signin-password',
-      label: 'Пароль',
-      placeholder: 'Пароль',
+      label: 'Password',
+      placeholder: 'Enter password',
       name: 'password',
       minLength: 8,
       required: true,
@@ -72,14 +72,14 @@ function Register({
       />
       <AuthForm
         name="signup-form"
-        heading="Добро пожаловать!"
+        heading="Sign up"
         inputsData={INPUTS_DATA}
         submitGroupModifier="submit-group_place_singup"
         errorMessage={authErrorMessage}
         submitButtonText={submitButtonText}
-        formText="Уже зарегистрированы?"
+        formText="Already a member?"
         linkPath="/signin"
-        linkText=" Войти"
+        linkText=" Log in here!"
         onChange={handleChange}
         onSubmit={handleSubmit}
         values={values}

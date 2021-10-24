@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   const FOOTER_LINKS = [
     {
-      title: 'Яндекс.Практикум',
+      title: 'Yandex.Prakticum',
       link: 'https://practicum.yandex.com',
     },
     {
@@ -21,7 +21,7 @@ function Footer() {
   return (
     <footer className="footer page__footer">
       <div className="footer__container">
-        <p className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</p>
+        <p className="footer__title">Portfolio Project Yandex.Prakticum х BeatFilm.</p>
         <div className="footer__content">
           <p className="footer__copyright">&copy; {new Date().getFullYear()}</p>
           <ul className="footer__links">

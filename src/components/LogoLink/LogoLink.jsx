@@ -13,11 +13,11 @@ function LogoLink({ logoLinkModifier }) {
     <Link
       className={logoLinkClassName}
       to={{ pathname: '/' }}
-      aria-label="Перейти на страницу о проекте"
+      aria-label="Home page"
     >
       <img
         src={Logo}
-        alt="Логотип сервиса Movies Explorer"
+        alt="Movies Explorer logo"
       />
     </Link>
   )

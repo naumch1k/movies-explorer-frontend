@@ -8,13 +8,13 @@ function Navigation() {
   const NAVIGATION_LINKS = [
 		{
 			key: 1,
-			linkText: 'Фильмы',
+			linkText: 'Movies',
 			linkPath: '/movies',
 			exact: false,
 		},
     {
 			key: 2,
-			linkText: 'Сохранённые фильмы',
+			linkText: 'Saved Movies',
 			linkPath: '/saved-movies',
 			exact: false,
 		},

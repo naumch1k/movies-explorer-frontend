@@ -10,7 +10,7 @@ function CloseButton({ classNameModifier, onClose }) {
     <button 
       className={closeButtonClassName}
       type="button"
-      aria-label="Закрыть меню"
+      aria-label="Close menu"
       onClick={onClose}
     />
   );

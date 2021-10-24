@@ -8,7 +8,7 @@ function AuthNavigation() {
 	const AUTH_NAVIGATION_LINKS = [
 		{
 			key: 1,
-			linkText: 'Регистрация',
+			linkText: 'Sign up',
 			linkPath: '/signup',
 			exact: false,
 		},

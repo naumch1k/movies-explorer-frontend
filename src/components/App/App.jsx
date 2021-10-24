@@ -45,9 +45,9 @@ function App() {
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
   const [infoTooltipMessage, setIinfoTooltipMessage] = useState('');
 
-  const [loginSubmitButtonText, setLoginSubmitButtonText] = useState('Войти');
-  const [registerSubmitButtonText, setRegisterSubmitButtonText] = useState('Зарегистрироваться');
-  const [profileSubmitButtonText, setProfileSubmitButtonText] = useState('Сохранить');
+  const [loginSubmitButtonText, setLoginSubmitButtonText] = useState('Sign in');
+  const [registerSubmitButtonText, setRegisterSubmitButtonText] = useState('Sign up');
+  const [profileSubmitButtonText, setProfileSubmitButtonText] = useState('Save');
 
   const history = useHistory();
 
@@ -114,7 +114,7 @@ function App() {
   }, [handleTokenCheck])
 
   const handleRegistration = (data) => {
-    setRegisterSubmitButtonText('Выполняется регистрация...');
+    setRegisterSubmitButtonText('Signing up...');
 
     mainApi
       .register(data)
@@ -137,12 +137,12 @@ function App() {
         }
       })
       .finally(() => {
-        setRegisterSubmitButtonText('Зарегистрироваться');
+        setRegisterSubmitButtonText('Sign up');
       })
   }
 
   const handleLogin = (data) => {
-    setLoginSubmitButtonText('Выполняется вход...');
+    setLoginSubmitButtonText('Logging in...');
     
     mainApi
       .authorize(data)
@@ -166,7 +166,7 @@ function App() {
         }
       })
       .finally(() => {
-        setLoginSubmitButtonText('Войти');
+        setLoginSubmitButtonText('Sign in');
       })
   }
 
@@ -184,7 +184,7 @@ function App() {
   }
 
   const handleUpdateUser = (data) => {
-    setProfileSubmitButtonText('Сохранение...');
+    setProfileSubmitButtonText('Saving...');
 
     mainApi
       .setUserInfo(data)
@@ -207,7 +207,7 @@ function App() {
         }
       })
       .finally(() => {
-        setProfileSubmitButtonText('Сохранить');
+        setProfileSubmitButtonText('Save');
       })
   }
 

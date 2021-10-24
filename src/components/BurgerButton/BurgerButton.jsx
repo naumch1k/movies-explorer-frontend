@@ -7,7 +7,7 @@ function BurgerButton({ onOpenMenu }) {
       className="burger-btn"
       type="button"
       onClick={onOpenMenu}
-      aria-label="Открыть меню"
+      aria-label="Open menu"
     />
   );
 }

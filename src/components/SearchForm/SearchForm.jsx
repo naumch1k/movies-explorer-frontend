@@ -16,7 +16,7 @@ function SearchForm({ onCheckboxChange, onSubmit }) {
     e.preventDefault();
 
     if (!searchQuery) {
-      setErrorMessage('Нужно ввести ключевое слово');
+      setErrorMessage('Field cannot be empty');
       return;
     }
 
@@ -47,7 +47,7 @@ function SearchForm({ onCheckboxChange, onSubmit }) {
               id="search-form-movie"
               type="text"
               name="keyword"
-              placeholder="Фильм"
+              placeholder="Enter keyword"
               required
               onChange={handleSearchQueryChange}
             />
@@ -58,7 +58,7 @@ function SearchForm({ onCheckboxChange, onSubmit }) {
           <button
             className="search-form__submit-btn"
             type="submit"
-            aria-label="Найти фильмы"
+            aria-label="Search movies"
           >
             <SearchIcon
               className="search-form__submit-btn-icon"

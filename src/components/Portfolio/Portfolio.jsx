@@ -5,22 +5,22 @@ import { Link } from 'react-router-dom';
 function Portfolio() {
   const PORTFOLIO_LINKS = [
     {
-      title: 'Статичный сайт',
+      title: 'Static Website',
       link: 'https://naumch1k.github.io/how-to-learn/',
     },
     {
-      title: 'Адаптивный сайт',
+      title: 'Responsive Website',
       link: 'https://naumch1k.github.io/russian-travel/',
     },
     {
-      title: 'Одностраничное приложение',
+      title: 'Single Page Application',
       link: 'https://naumch1k.students.nomoredomains.rocks/',
     },
   ];
 
   return(
     <div className="portfolio">
-      <h3 className="portfolio__title">Портфолио</h3>
+      <h3 className="portfolio__title">Projects</h3>
       <ul className="portfolio__links">
         {PORTFOLIO_LINKS.map((item, index) => (
           <li 

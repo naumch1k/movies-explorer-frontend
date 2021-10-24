@@ -9,12 +9,12 @@ function Techs() {
     <section className="techs main__section">
       <div className="main__section-container main__section-container_size_m">
         <SectionTitle
-          title="Технологии"
+          title="Techs"
         />
         <div className="techs__content">
-          <h2 className="techs__subtitle">7 технологий</h2>
+          {/* <h2 className="techs__subtitle">7 технологий</h2> */}
           <p className="techs__text">
-          На&nbsp;курсе веб-разработки мы&nbsp;освоили технологии, которые применили в&nbsp;дипломном проекте.
+          Practicum's Web Developer program is devoted to learning the following technologies, which were used to build this project
           </p>
         </div>
         <ul className="techs__list">

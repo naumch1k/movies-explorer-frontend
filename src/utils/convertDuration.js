@@ -3,9 +3,9 @@ const convertDuration = (durationInMinutes) => {
   const minutes = Math.floor(durationInMinutes % 60);
 
   if (hours >= 1) {
-    return `${hours}ч ${minutes}м`;
+    return `${hours}h ${minutes}m`;
   } else {
-    return `${minutes}м`;
+    return `${minutes}m`;
   }
 }
   

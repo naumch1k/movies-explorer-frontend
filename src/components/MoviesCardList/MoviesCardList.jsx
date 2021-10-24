@@ -15,7 +15,7 @@ function MoviesCardList({
       <section className="movies main__section">
         <div className="main__section-container main__section-container_size_xs">
           {!isFilteringMoviesData && noMoviesFound && (
-            <p className="movies__message">Ничего не найдено</p>
+            <p className="movies__message">Nothing Found</p>
           )}
           {isFilteringMoviesData && (
             <Preloader />
@@ -36,10 +36,10 @@ function MoviesCardList({
                 <button
                   className="movies__btn"
                   type="button"
-                  aria-label="Показать больше фильмов"
+                  aria-label="Show more movies"
                   onClick={onRenderMoreClick}
                 >
-                  Ещё
+                  Show more
                 </button>
               }
             </>

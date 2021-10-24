@@ -8,7 +8,7 @@ function SigninButton() {
       className="signin-btn"
       to={{ pathname: '/signin' }}
     >
-      Войти
+      Sign in
     </NavLink>
   );
 }

@@ -19,7 +19,7 @@ function MoviesCard({ card, onCardSaveToggle, onCardDelete }) {
   );
 
   const cardSaveButtonContent = (
-    card.isSaved ? <CheckIcon /> : 'Сохранить'
+    card.isSaved ? <CheckIcon /> : 'Save'
   );
 
   const handleSaveToggle = () => {
@@ -35,12 +35,12 @@ function MoviesCard({ card, onCardSaveToggle, onCardDelete }) {
       <Link
         to={{ pathname: movieTrailerPathName }}
         target="_blank"
-        aria-label={`Открыть трейлер фильма ${card.nameRU} на youtube`}
+        aria-label={`Open ${card.nameRU} trailer on youtube`}
       >
         <img 
           className="movies-card__image"
           src={getFullImageUrl(card.image)}
-          alt={`Кадр из фильма ${card.nameRU}`}
+          alt={`${card.nameRU} thumbnail`}
         />
       </Link>
       <div className="movies-card__desc">
@@ -51,7 +51,7 @@ function MoviesCard({ card, onCardSaveToggle, onCardDelete }) {
         <button
           className="movies-card__btn movies-card__btn_use_delete"
           type="button"
-          aria-label="Удалить из сохраненных"
+          aria-label="Delete movie"
           onClick={handleDeleteClick}
         />
       }
@@ -59,7 +59,7 @@ function MoviesCard({ card, onCardSaveToggle, onCardDelete }) {
         <button
           className={cardSaveToggleClassName}
           type="button"
-          aria-label="Сохранить фильм"
+          aria-label="Save movie"
           onClick={handleSaveToggle}
         >
           {cardSaveButtonContent}

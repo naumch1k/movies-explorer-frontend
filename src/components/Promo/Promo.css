@@ -26,10 +26,14 @@
 
 .promo__text {
   max-width: 310px;
-  margin: 0 0 146px;
+  margin: 0 0 10px;
   font-size: var(--text-size-xs);
   line-height: 1.25;
   opacity: .5;
+}
+
+.promo__text:nth-of-type(2) {
+  margin: 0 0 146px;
 }
 
 .promo__link {
@@ -77,7 +81,7 @@
     margin: 0 0 22px;
   }
 
-  .promo__text {
+  .promo__text:nth-of-type(2) {
     margin: 0 0 90px;
   }
 }  
@@ -93,6 +97,9 @@
 
   .promo__text {
     max-width: 260px;
+  }
+
+  .promo__text:nth-of-type(2) {
     margin: 0 0 80px;
   }
 

@@ -7,19 +7,19 @@ import ProfileButton from '../ProfileButton/ProfileButton';
 const MOBILE_NAVIGATION_LINKS = [
   {
     key: 1,
-    linkText: 'Главная',
+    linkText: 'Home',
     linkPath: '/',
     exact: true,
   },
   {
     key: 2,
-    linkText: 'Фильмы',
+    linkText: 'Movies',
     linkPath: '/movies',
     exact: false,
   },
   {
     key: 3,
-    linkText: 'Сохранённые фильмы',
+    linkText: 'Saved Movies',
     linkPath: '/saved-movies',
     exact: false,
   },
