@@ -48,7 +48,7 @@ In the project directory, you can run:
 > Builds the app for production to the `build` folder
 
 ## TO DO
-- [ ] translate to EN
+- [x] translate to EN
 - [ ] add reset search button at saved movies
 - [ ] program search with more than one keyword
 - [ ] fix some minor bugs (e.g. when click shortfilm filter before form submit it shows no result message)
