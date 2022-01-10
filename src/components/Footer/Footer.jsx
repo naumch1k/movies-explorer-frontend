@@ -13,7 +13,7 @@ function Footer() {
       link: 'https://github.com/naumch1k',
     },
     {
-      title: 'Facebook',
+      title: 'LinkedIn',
       link: 'https://www.linkedin.com/in/naumch1k/',
     },
   ];
