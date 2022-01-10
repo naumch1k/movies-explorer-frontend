@@ -38,7 +38,10 @@ function AboutMe() {
                 Web-Developer, Chicago
               </p>
               <p className="about-me__text">
-                Web Dev learner, natural problem solver with an inborn curiosity for how and why things work. Passionate and driven by constant self-growth, and eager to help companies become successful.
+              Solution-focused web developer coming from a customer service background with a passion for team projects and client satisfaction.
+               I discovered web development through my love for creativity and complex problem-solving. Whatever I do,
+               I try to figure out the logic of what is happening, identify some structure and patterns, understand how I could optimize the processes. 
+               Having occupied multiple roles within different industries, I have exhibited that I am quick to learn, eager to strengthen the team, and driven to make visions a reality.
               </p>
             </div>
             <ul className="about-me__links">
