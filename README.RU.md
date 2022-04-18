@@ -8,7 +8,7 @@
 
 * Адрес размещения фронтенда: [https://naumch1k.students.nomoredomains.club](https://naumch1k.students.nomoredomains.club)
 * Адрес домена сервера: [https://api.naumch1k.students.nomoredomains.club](https://api.naumch1k.students.nomoredomains.club)
-* Публичный IP: *84.201.133.219*
+* Публичный IP: *52.15.204.140*
 
 Если совсем лень регистрироваться  
 логин: *test@test.com*  

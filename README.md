@@ -8,7 +8,7 @@ frontend (React JS) for the final project @ [Yandex.Practicum](https://practicum
 
 * Frontend Hosting: [https://naumch1k.students.nomoredomains.club](https://naumch1k.students.nomoredomains.club)
 * Server URL: [https://api.naumch1k.students.nomoredomains.club](https://api.naumch1k.students.nomoredomains.club)
-* Public IP Address: *84.201.133.219*
+* Public IP Address: *52.15.204.140*
 
 You are more than welcome to register yourself, or can just use   
 login: *test@test.com*  
