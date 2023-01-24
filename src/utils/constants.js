@@ -1,4 +1,4 @@
-export const MAIN_API = 'https://api.naumch1k.students.nomoredomains.club';
+export const MAIN_API = 'https://api.moviesnaumchik.xyz';
 export const MOVIES_URL = 'https://api.nomoreparties.co';
 export const MOVIES_API = 'https://api.nomoreparties.co/beatfilm-movies';
 
