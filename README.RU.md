@@ -6,9 +6,9 @@
 
 [Ссылка на макет](https://www.figma.com/file/c4kBXWfzL7N4MSpXbHk6u9/YP-Diploma?node-id=891%3A3857)
 
-* Адрес размещения фронтенда: [https://naumch1k.students.nomoredomains.club](https://naumch1k.students.nomoredomains.club)
-* Адрес домена сервера: [https://api.naumch1k.students.nomoredomains.club](https://api.naumch1k.students.nomoredomains.club)
-* Публичный IP: *52.15.204.140*
+* Адрес размещения фронтенда: [https://moviesnaumchik.xyz](https://moviesnaumchik.xyz)
+* Адрес домена сервера: [https://api.moviesnaumchik.xyz](https://api.moviesnaumchik.xyz)
+* Публичный IP: *3.14.85.143*
 
 Если совсем лень регистрироваться  
 логин: *test@test.com*  
